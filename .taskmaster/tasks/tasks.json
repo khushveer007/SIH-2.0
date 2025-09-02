@@ -1,0 +1,172 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Setup Project Repository",
+        "description": "Initialize the project repository with version control and basic folder structure.",
+        "details": "Create a Git repository and set up the folder structure for the project. Include separate folders for frontend, backend, and database scripts. Initialize the repository with a README file and add .gitignore for node_modules and other unnecessary files.",
+        "testStrategy": "Verify that the repository is initialized correctly and that the folder structure matches the requirements.",
+        "priority": "medium",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Backend Server Setup",
+        "description": "Set up the Node.js and Express.js backend server.",
+        "details": "Install Node.js and Express.js. Create a basic server with endpoints for health checks. Configure middleware for JSON parsing and error handling.",
+        "testStrategy": "Test the server by sending requests to the health check endpoint and verifying the responses.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Database Configuration",
+        "description": "Configure MongoDB Atlas and set up initial data models.",
+        "details": "Create a MongoDB Atlas cluster and connect it to the backend server. Define data models for User, StudentProfile, GovCollege, Course, and TimelineEvent using Mongoose.",
+        "testStrategy": "Verify the connection to MongoDB Atlas and ensure that data models are created successfully.",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "User Authentication API",
+        "description": "Develop API endpoints for user registration and login.",
+        "details": "Implement POST /api/auth/register and POST /api/auth/login endpoints. Use bcrypt for password hashing and JWT for authentication tokens.",
+        "testStrategy": "Test the endpoints with valid and invalid data to ensure proper functionality and security.",
+        "priority": "high",
+        "dependencies": [
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Frontend Shell Setup",
+        "description": "Set up the React.js frontend with Tailwind CSS and component libraries.",
+        "details": "Initialize a React.js project. Install Tailwind CSS, shadcn/ui, Magic UI, and Framer Motion. Create a basic layout with navigation and placeholder components.",
+        "testStrategy": "Verify that the frontend loads correctly and that the installed libraries are functional.",
+        "priority": "medium",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Landing Page Development",
+        "description": "Develop an attractive landing page with modern design elements.",
+        "details": "Use Magic UI and Framer Motion to create a visually engaging landing page. Include clear calls-to-action for student registration.",
+        "testStrategy": "Test the landing page on multiple devices and browsers to ensure responsiveness and visual appeal.",
+        "priority": "high",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Student Registration and Login UI",
+        "description": "Create UI components for student registration and login.",
+        "details": "Develop modals/pages for registration and login using shadcn/ui components. Integrate these with the backend authentication API.",
+        "testStrategy": "Test the UI components for usability and ensure they interact correctly with the backend.",
+        "priority": "high",
+        "dependencies": [
+          4,
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Aptitude Quiz Feature",
+        "description": "Develop a simple quiz feature to suggest streams based on student interests.",
+        "details": "Create a frontend component for the quiz. Implement client-side logic to calculate results and suggest streams.",
+        "testStrategy": "Test the quiz with various inputs to ensure accurate suggestions.",
+        "priority": "medium",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Government College Directory",
+        "description": "Develop a searchable and filterable directory of nearby government colleges.",
+        "details": "Create a frontend component to display college data. Implement filtering by location and stream. Populate the database with mock data.",
+        "testStrategy": "Test the directory with different filters and ensure accurate results.",
+        "priority": "high",
+        "dependencies": [
+          3,
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Course Information Display",
+        "description": "Enable users to view detailed information about courses offered by colleges.",
+        "details": "Develop a frontend component to display course details. Fetch data from the backend and integrate it with the college directory.",
+        "testStrategy": "Test the course information display for accuracy and usability.",
+        "priority": "medium",
+        "dependencies": [
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 11,
+        "title": "Timeline Tracker Feature",
+        "description": "Develop a static page to show important academic deadlines.",
+        "details": "Create a frontend component for the timeline tracker. Populate it with mock data for events like exams and admissions.",
+        "testStrategy": "Verify the timeline tracker displays events correctly and is responsive.",
+        "priority": "low",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 12,
+        "title": "High-Quality UI Enhancements",
+        "description": "Enhance the UI with modern aesthetics and fluid interactions.",
+        "details": "Use Framer Motion to add animations and transitions. Ensure all components use shadcn/ui for consistency.",
+        "testStrategy": "Test the UI enhancements for smooth interactions and visual consistency.",
+        "priority": "medium",
+        "dependencies": [
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-09-02T19:46:39.653Z",
+      "updated": "2025-09-02T19:46:39.653Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
