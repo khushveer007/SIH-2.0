@@ -30,6 +30,10 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <TestAlias />
+      <div className="mt-6 p-4 rounded-lg bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-lg">
+        <h2 className="text-xl font-semibold tracking-tight">Tailwind Active</h2>
+        <p className="text-sm opacity-90">This block confirms Tailwind utility classes are being processed.</p>
+      </div>
     </>
   )
 }
