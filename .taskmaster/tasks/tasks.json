@@ -135,7 +135,7 @@
         "dependencies": [
           2
         ],
-        "status": "in-progress",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -143,7 +143,7 @@
             "description": "Set up a MongoDB Atlas cluster for the project.",
             "dependencies": [],
             "details": "Log in to MongoDB Atlas, create a new project, and set up a cluster. Choose the appropriate cloud provider and region. Configure the cluster with the necessary settings, such as database version and tier. Note down the connection string for later use.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Verify that the cluster is created successfully and accessible from the MongoDB Atlas dashboard."
           },
           {
@@ -154,7 +154,7 @@
               "3.1"
             ],
             "details": "Install the MongoDB Node.js driver or Mongoose in the backend project. Use the connection string from the MongoDB Atlas cluster to configure the connection in the backend server. Implement error handling to ensure the server logs any connection issues.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Start the backend server and verify that it connects to the MongoDB Atlas cluster without errors."
           },
           {
@@ -165,7 +165,7 @@
               "3.2"
             ],
             "details": "Define the User schema with fields such as username, email, password, and role. Define the StudentProfile schema with fields such as userId (reference to User), name, age, and academic details. Use appropriate data types and validation rules for each field.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test the models by creating and saving sample User and StudentProfile documents to the database."
           },
           {
@@ -176,7 +176,7 @@
               "3.3"
             ],
             "details": "Define the GovCollege schema with fields such as name, location, and coursesOffered. Define the Course schema with fields such as name, description, and collegeId (reference to GovCollege). Use appropriate data types and validation rules for each field.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test the models by creating and saving sample GovCollege and Course documents to the database."
           },
           {
@@ -187,7 +187,7 @@
               "3.4"
             ],
             "details": "Define the TimelineEvent schema with fields such as title, description, date, and relatedEntity (reference to other models like User or Course). Use appropriate data types and validation rules for each field.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test the model by creating and saving sample TimelineEvent documents to the database."
           }
         ]
@@ -809,7 +809,7 @@
     ],
     "metadata": {
       "created": "2025-09-02T19:46:39.653Z",
-      "updated": "2025-09-02T20:45:54.822Z",
+      "updated": "2025-09-02T21:32:36.725Z",
       "description": "Tasks for master context"
     }
   }
