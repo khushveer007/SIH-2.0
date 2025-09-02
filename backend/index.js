@@ -1,6 +1,18 @@
 const express = require('express');
+require('dotenv').config();
+const { connectDB, isConnected } = require('./config/db');
+
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
+// Attempt DB connection (non-blocking if fails)
+(async () => {
+  try {
+    await connectDB();
+  } catch (e) {
+    console.error('[Startup] Database connection failed, continuing without DB.');
+  }
+})();
 
 // Middleware for JSON parsing
 app.use(express.json());
@@ -12,7 +24,12 @@ app.get('/', (req, res) => {
 
 // Health check endpoint
 app.get('/health', (req, res) => {
-  res.json({ status: 'ok' });
+  res.json({ status: 'ok', db: isConnected() ? 'connected' : 'disconnected' });
+});
+
+// DB status endpoint
+app.get('/db-status', (req, res) => {
+  res.json({ connected: isConnected() });
 });
 
 // Test endpoint for JSON parsing
