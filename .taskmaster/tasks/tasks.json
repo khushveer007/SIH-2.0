@@ -68,7 +68,7 @@
         "dependencies": [
           1
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -76,7 +76,7 @@
             "description": "Install Node.js on the system and initialize the backend project with npm.",
             "dependencies": [],
             "details": "Download and install the latest stable version of Node.js from the official website. Once installed, create a new directory for the backend, navigate to it, and run `npm init -y` to initialize a new Node.js project.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Verify Node.js installation by running `node -v` and `npm -v`. Check that the `package.json` file is created in the project directory."
           },
           {
@@ -87,7 +87,7 @@
               "2.1"
             ],
             "details": "Run `npm install express` to install Express.js. Create an `index.js` file and set up a basic Express server that listens on a port (e.g., 3000). Include a root endpoint (`/`) that returns a simple message like 'Server is running'.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Start the server and verify that accessing `http://localhost:3000/` in a browser or using a tool like Postman returns the expected message."
           },
           {
@@ -98,7 +98,7 @@
               "2.2"
             ],
             "details": "In the `index.js` file, add a new route `/health` that responds with a JSON object containing a status message (e.g., `{ status: 'ok' }`).",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Send a GET request to `http://localhost:3000/health` and verify that the response contains the expected JSON object."
           },
           {
@@ -109,7 +109,7 @@
               "2.2"
             ],
             "details": "Use the `express.json()` middleware to handle JSON payloads. Add this middleware to the server setup in `index.js` before defining any routes.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Create a test endpoint that echoes back the JSON payload sent in a POST request. Verify that the server correctly parses and responds with the same data."
           },
           {
@@ -120,7 +120,7 @@
               "2.4"
             ],
             "details": "Create an error-handling middleware function that captures errors, logs them, and sends a JSON response with an error message and status code. Add this middleware at the end of the middleware stack in `index.js`.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Trigger an error by sending a request to an undefined route. Verify that the server responds with the appropriate error message and status code."
           }
         ]
@@ -809,7 +809,7 @@
     ],
     "metadata": {
       "created": "2025-09-02T19:46:39.653Z",
-      "updated": "2025-09-02T20:00:45.497Z",
+      "updated": "2025-09-02T20:35:13.823Z",
       "description": "Tasks for master context"
     }
   }
