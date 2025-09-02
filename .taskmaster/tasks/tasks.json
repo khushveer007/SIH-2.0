@@ -202,7 +202,7 @@
         "dependencies": [
           3
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -210,7 +210,7 @@
             "description": "Install and configure necessary libraries for password hashing and token generation.",
             "dependencies": [],
             "details": "Install bcrypt for password hashing and jsonwebtoken (JWT) for token generation. Ensure these dependencies are added to the project and properly configured in the environment. Create a utility module for reusable functions like hashing passwords and generating tokens.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Verify that bcrypt can hash and compare passwords, and JWT can generate and verify tokens."
           },
           {
@@ -221,7 +221,7 @@
               "4.1"
             ],
             "details": "Create the /api/auth/register route. Validate incoming data (e.g., email, password). Hash the password using bcrypt and store the user data in the database. Return a success response upon successful registration.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test the endpoint with valid and invalid data to ensure proper validation, password hashing, and database storage."
           },
           {
@@ -232,7 +232,7 @@
               "4.1"
             ],
             "details": "Create the /api/auth/login route. Validate incoming data (e.g., email, password). Retrieve the user from the database, compare the provided password with the hashed password using bcrypt, and generate a JWT token upon successful authentication. Return the token in the response.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test the endpoint with valid and invalid credentials to ensure proper validation, password comparison, and token generation."
           },
           {
@@ -244,7 +244,7 @@
               "4.3"
             ],
             "details": "Create a middleware function that extracts the token from the request headers, verifies it using the JWT library, and attaches the decoded user information to the request object. Ensure the middleware handles invalid or expired tokens gracefully.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Test the middleware with valid, invalid, and expired tokens to ensure proper behavior."
           },
           {
@@ -257,7 +257,7 @@
               "4.4"
             ],
             "details": "Ensure the endpoints are properly integrated into the application. Use a tool like Swagger or Postman to document the API, including request and response formats, error codes, and examples.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Verify the API documentation for accuracy and test the endpoints using the documented examples."
           }
         ]
@@ -809,7 +809,7 @@
     ],
     "metadata": {
       "created": "2025-09-02T19:46:39.653Z",
-      "updated": "2025-09-02T21:32:36.725Z",
+      "updated": "2025-09-02T21:53:23.680Z",
       "description": "Tasks for master context"
     }
   }

@@ -2,6 +2,8 @@ const express = require('express');
 require('dotenv').config();
 const { connectDB, isConnected } = require('./config/db');
 
+const authRoutes = require('./routes/auth');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -31,6 +33,9 @@ app.get('/health', (req, res) => {
 app.get('/db-status', (req, res) => {
   res.json({ connected: isConnected() });
 });
+
+// Auth routes
+app.use('/api/auth', authRoutes);
 
 // Test endpoint for JSON parsing
 app.post('/echo', (req, res) => {
