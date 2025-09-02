@@ -61,12 +61,19 @@ SIH-2.0/
    ```
 
 3. **Set up environment variables**
-   Create a `.env` file in the root directory and add:
-   ```
+   Create a `.env` file in the `backend` directory (or project root if you prefer a single env) and add:
+   ```env
+   # Database
    MONGODB_URI=your_mongodb_atlas_connection_string
-   JWT_SECRET=your_jwt_secret_key
+
+   # Server
    PORT=5000
+
+   # Authentication
+   AUTH_JWT_SECRET=your_jwt_secret_key
+   AUTH_JWT_EXPIRES=1h            # e.g. 15m, 1h, 7d
    ```
+   A template is available at `backend/.env.example`.
 
 4. **Start the development server**
    ```bash
@@ -104,3 +111,167 @@ For questions or support, please open an issue on GitHub.
 ---
 
 *Built with ❤️ for students, by students*
+
+## 📘 Basic API Documentation
+
+> This is an initial high‑level overview of currently implemented backend endpoints. It will expand as new features are added.
+
+### Base URL
+
+During development (default port `5000`):
+
+```
+http://localhost:5000
+```
+
+### Authentication Overview
+
+Authentication uses JSON Web Tokens (JWT). After a successful login or registration, the server returns a token. Include it in subsequent protected requests via the `Authorization` header:
+
+```
+Authorization: Bearer <token>
+```
+
+### Environment Variables (Backend)
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `MONGODB_URI` | Yes (for DB operations) | MongoDB Atlas connection string. If omitted, server starts in degraded mode without DB connection. |
+| `PORT` | No (default 5000) | HTTP server port. |
+| `AUTH_JWT_SECRET` | Yes | Secret key for signing JWTs. Keep this private. |
+| `AUTH_JWT_EXPIRES` | No (default `1h`) | JWT expiry (e.g. `15m`, `1h`, `7d`). |
+
+### Health & Status Endpoints
+
+| Method | Path | Description | Auth |
+|--------|------|-------------|------|
+| GET | `/health` | Returns API & DB status summary. | None |
+| GET | `/db-status` | Detailed MongoDB connection info (connected flag, URI presence). | None |
+
+#### `GET /health`
+**Response (200)**
+```json
+{
+   "status": "ok",
+   "uptime": 123.45,
+   "timestamp": "2025-09-03T10:15:30.000Z",
+   "db": { "connected": true }
+}
+```
+
+#### `GET /db-status`
+**Response (200)**
+```json
+{
+   "connected": true,
+   "hasUri": true
+}
+```
+
+### Auth Endpoints
+
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | `/api/auth/register` | Create a new user account. |
+| POST | `/api/auth/login` | Authenticate user & receive JWT. |
+| GET | `/api/auth/me` | Fetch current user profile (protected). |
+
+#### `POST /api/auth/register`
+**Request Body**
+```json
+{
+   "username": "john_doe",
+   "email": "john@example.com",
+   "password": "StrongPass123!"
+}
+```
+**Success (201)**
+```json
+{
+   "user": {
+      "id": "66f000000000000000000001",
+      "username": "john_doe",
+      "email": "john@example.com",
+      "role": "student"
+   },
+   "token": "<jwt>"
+}
+```
+Possible Errors:
+* 400 – Missing / invalid fields
+* 409 – Email already registered
+
+#### `POST /api/auth/login`
+**Request Body**
+```json
+{
+   "email": "john@example.com",
+   "password": "StrongPass123!"
+}
+```
+**Success (200)**
+```json
+{
+   "token": "<jwt>"
+}
+```
+Possible Errors:
+* 400 – Missing credentials
+* 401 – Invalid email or password
+
+#### `GET /api/auth/me` (Protected)
+Headers:
+```
+Authorization: Bearer <jwt>
+```
+**Success (200)**
+```json
+{
+   "id": "66f000000000000000000001",
+   "username": "john_doe",
+   "email": "john@example.com",
+   "role": "student"
+}
+```
+Errors:
+* 401 – Missing or invalid token
+
+### Error Response Format (Typical)
+
+While formats may evolve, current errors use a simple JSON object:
+```json
+{
+   "error": "Invalid email or password"
+}
+```
+
+### Sample cURL Commands
+
+Register:
+```bash
+curl -X POST http://localhost:5000/api/auth/register \
+   -H "Content-Type: application/json" \
+   -d '{"username":"john_doe","email":"john@example.com","password":"StrongPass123!"}'
+```
+
+Login:
+```bash
+curl -X POST http://localhost:5000/api/auth/login \
+   -H "Content-Type: application/json" \
+   -d '{"email":"john@example.com","password":"StrongPass123!"}'
+```
+
+Get Current User:
+```bash
+curl http://localhost:5000/api/auth/me \
+   -H "Authorization: Bearer <jwt>"
+```
+
+Health:
+```bash
+curl http://localhost:5000/health
+```
+
+### Next Steps
+
+Upcoming additions will include: structured validation, rate limiting, richer error codes, and expanded domain endpoints (colleges, courses, timelines).
