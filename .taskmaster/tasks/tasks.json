@@ -10,7 +10,53 @@
         "priority": "medium",
         "dependencies": [],
         "status": "pending",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Initialize Git Repository",
+            "description": "Create a new Git repository for the project and set up version control.",
+            "dependencies": [],
+            "details": "Navigate to the project directory in the terminal. Run 'git init' to initialize a new Git repository. Create an initial commit with a placeholder README file.",
+            "status": "pending",
+            "testStrategy": "Verify that the '.git' folder is created and that the initial commit is present in the Git log."
+          },
+          {
+            "id": 2,
+            "title": "Create Basic Folder Structure",
+            "description": "Set up the folder structure for the project with separate directories for frontend, backend, and database scripts.",
+            "dependencies": [],
+            "details": "Create the following directories in the project root: 'frontend', 'backend', and 'database'. Ensure the structure is clear and organized.",
+            "status": "pending",
+            "testStrategy": "Verify that the specified folders are created in the project directory."
+          },
+          {
+            "id": 3,
+            "title": "Add README File",
+            "description": "Create a README file to provide an overview of the project.",
+            "dependencies": [],
+            "details": "Create a 'README.md' file in the project root. Add a brief description of the project, its purpose, and any initial setup instructions.",
+            "status": "pending",
+            "testStrategy": "Open the README file and verify that it contains the expected content."
+          },
+          {
+            "id": 4,
+            "title": "Configure .gitignore File",
+            "description": "Set up a .gitignore file to exclude unnecessary files and directories from version control.",
+            "dependencies": [],
+            "details": "Create a '.gitignore' file in the project root. Add entries for 'node_modules/', '.env', and other files or directories that should not be tracked by Git.",
+            "status": "pending",
+            "testStrategy": "Verify that the .gitignore file contains the correct entries and that excluded files are not tracked by Git."
+          },
+          {
+            "id": 5,
+            "title": "Commit Initial Project Setup",
+            "description": "Commit the initial project setup, including the folder structure, README, and .gitignore file.",
+            "dependencies": [],
+            "details": "Stage all changes using 'git add .', then commit them with a message like 'Initial project setup'.",
+            "status": "pending",
+            "testStrategy": "Check the Git log to ensure that the commit includes all the intended files and directories."
+          }
+        ]
       },
       {
         "id": 2,
@@ -23,7 +69,61 @@
           1
         ],
         "status": "pending",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Install Node.js and Initialize Project",
+            "description": "Install Node.js on the system and initialize the backend project with npm.",
+            "dependencies": [],
+            "details": "Download and install the latest stable version of Node.js from the official website. Once installed, create a new directory for the backend, navigate to it, and run `npm init -y` to initialize a new Node.js project.",
+            "status": "pending",
+            "testStrategy": "Verify Node.js installation by running `node -v` and `npm -v`. Check that the `package.json` file is created in the project directory."
+          },
+          {
+            "id": 2,
+            "title": "Install Express.js and Set Up Basic Server",
+            "description": "Install Express.js and create a basic server that listens on a specified port.",
+            "dependencies": [
+              "2.1"
+            ],
+            "details": "Run `npm install express` to install Express.js. Create an `index.js` file and set up a basic Express server that listens on a port (e.g., 3000). Include a root endpoint (`/`) that returns a simple message like 'Server is running'.",
+            "status": "pending",
+            "testStrategy": "Start the server and verify that accessing `http://localhost:3000/` in a browser or using a tool like Postman returns the expected message."
+          },
+          {
+            "id": 3,
+            "title": "Add Health Check Endpoint",
+            "description": "Create a dedicated health check endpoint to verify server status.",
+            "dependencies": [
+              "2.2"
+            ],
+            "details": "In the `index.js` file, add a new route `/health` that responds with a JSON object containing a status message (e.g., `{ status: 'ok' }`).",
+            "status": "pending",
+            "testStrategy": "Send a GET request to `http://localhost:3000/health` and verify that the response contains the expected JSON object."
+          },
+          {
+            "id": 4,
+            "title": "Configure Middleware for JSON Parsing",
+            "description": "Set up middleware to parse incoming JSON requests.",
+            "dependencies": [
+              "2.2"
+            ],
+            "details": "Use the `express.json()` middleware to handle JSON payloads. Add this middleware to the server setup in `index.js` before defining any routes.",
+            "status": "pending",
+            "testStrategy": "Create a test endpoint that echoes back the JSON payload sent in a POST request. Verify that the server correctly parses and responds with the same data."
+          },
+          {
+            "id": 5,
+            "title": "Implement Error Handling Middleware",
+            "description": "Add middleware to handle errors and send appropriate responses.",
+            "dependencies": [
+              "2.4"
+            ],
+            "details": "Create an error-handling middleware function that captures errors, logs them, and sends a JSON response with an error message and status code. Add this middleware at the end of the middleware stack in `index.js`.",
+            "status": "pending",
+            "testStrategy": "Trigger an error by sending a request to an undefined route. Verify that the server responds with the appropriate error message and status code."
+          }
+        ]
       },
       {
         "id": 3,
@@ -36,7 +136,61 @@
           2
         ],
         "status": "pending",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create MongoDB Atlas Cluster",
+            "description": "Set up a MongoDB Atlas cluster for the project.",
+            "dependencies": [],
+            "details": "Log in to MongoDB Atlas, create a new project, and set up a cluster. Choose the appropriate cloud provider and region. Configure the cluster with the necessary settings, such as database version and tier. Note down the connection string for later use.",
+            "status": "pending",
+            "testStrategy": "Verify that the cluster is created successfully and accessible from the MongoDB Atlas dashboard."
+          },
+          {
+            "id": 2,
+            "title": "Connect Backend Server to MongoDB Atlas",
+            "description": "Establish a connection between the backend server and the MongoDB Atlas cluster.",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "Install the MongoDB Node.js driver or Mongoose in the backend project. Use the connection string from the MongoDB Atlas cluster to configure the connection in the backend server. Implement error handling to ensure the server logs any connection issues.",
+            "status": "pending",
+            "testStrategy": "Start the backend server and verify that it connects to the MongoDB Atlas cluster without errors."
+          },
+          {
+            "id": 3,
+            "title": "Define User and StudentProfile Data Models",
+            "description": "Create Mongoose schemas and models for the User and StudentProfile entities.",
+            "dependencies": [
+              "3.2"
+            ],
+            "details": "Define the User schema with fields such as username, email, password, and role. Define the StudentProfile schema with fields such as userId (reference to User), name, age, and academic details. Use appropriate data types and validation rules for each field.",
+            "status": "pending",
+            "testStrategy": "Test the models by creating and saving sample User and StudentProfile documents to the database."
+          },
+          {
+            "id": 4,
+            "title": "Define GovCollege and Course Data Models",
+            "description": "Create Mongoose schemas and models for the GovCollege and Course entities.",
+            "dependencies": [
+              "3.3"
+            ],
+            "details": "Define the GovCollege schema with fields such as name, location, and coursesOffered. Define the Course schema with fields such as name, description, and collegeId (reference to GovCollege). Use appropriate data types and validation rules for each field.",
+            "status": "pending",
+            "testStrategy": "Test the models by creating and saving sample GovCollege and Course documents to the database."
+          },
+          {
+            "id": 5,
+            "title": "Define TimelineEvent Data Model",
+            "description": "Create a Mongoose schema and model for the TimelineEvent entity.",
+            "dependencies": [
+              "3.4"
+            ],
+            "details": "Define the TimelineEvent schema with fields such as title, description, date, and relatedEntity (reference to other models like User or Course). Use appropriate data types and validation rules for each field.",
+            "status": "pending",
+            "testStrategy": "Test the model by creating and saving sample TimelineEvent documents to the database."
+          }
+        ]
       },
       {
         "id": 4,
@@ -49,7 +203,64 @@
           3
         ],
         "status": "pending",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up project dependencies for authentication",
+            "description": "Install and configure necessary libraries for password hashing and token generation.",
+            "dependencies": [],
+            "details": "Install bcrypt for password hashing and jsonwebtoken (JWT) for token generation. Ensure these dependencies are added to the project and properly configured in the environment. Create a utility module for reusable functions like hashing passwords and generating tokens.",
+            "status": "pending",
+            "testStrategy": "Verify that bcrypt can hash and compare passwords, and JWT can generate and verify tokens."
+          },
+          {
+            "id": 2,
+            "title": "Implement user registration endpoint",
+            "description": "Develop the POST /api/auth/register endpoint to handle user registration.",
+            "dependencies": [
+              "4.1"
+            ],
+            "details": "Create the /api/auth/register route. Validate incoming data (e.g., email, password). Hash the password using bcrypt and store the user data in the database. Return a success response upon successful registration.",
+            "status": "pending",
+            "testStrategy": "Test the endpoint with valid and invalid data to ensure proper validation, password hashing, and database storage."
+          },
+          {
+            "id": 3,
+            "title": "Implement user login endpoint",
+            "description": "Develop the POST /api/auth/login endpoint to handle user login.",
+            "dependencies": [
+              "4.1"
+            ],
+            "details": "Create the /api/auth/login route. Validate incoming data (e.g., email, password). Retrieve the user from the database, compare the provided password with the hashed password using bcrypt, and generate a JWT token upon successful authentication. Return the token in the response.",
+            "status": "pending",
+            "testStrategy": "Test the endpoint with valid and invalid credentials to ensure proper validation, password comparison, and token generation."
+          },
+          {
+            "id": 4,
+            "title": "Add middleware for token verification",
+            "description": "Develop middleware to verify JWT tokens for protected routes.",
+            "dependencies": [
+              "4.1",
+              "4.3"
+            ],
+            "details": "Create a middleware function that extracts the token from the request headers, verifies it using the JWT library, and attaches the decoded user information to the request object. Ensure the middleware handles invalid or expired tokens gracefully.",
+            "status": "pending",
+            "testStrategy": "Test the middleware with valid, invalid, and expired tokens to ensure proper behavior."
+          },
+          {
+            "id": 5,
+            "title": "Integrate and document authentication API",
+            "description": "Integrate the registration and login endpoints into the application and provide API documentation.",
+            "dependencies": [
+              "4.2",
+              "4.3",
+              "4.4"
+            ],
+            "details": "Ensure the endpoints are properly integrated into the application. Use a tool like Swagger or Postman to document the API, including request and response formats, error codes, and examples.",
+            "status": "pending",
+            "testStrategy": "Verify the API documentation for accuracy and test the endpoints using the documented examples."
+          }
+        ]
       },
       {
         "id": 5,
@@ -62,7 +273,62 @@
           1
         ],
         "status": "pending",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Initialize React.js Project",
+            "description": "Set up a new React.js project using Create React App or Vite.",
+            "dependencies": [],
+            "details": "Use the command-line tool to create a new React.js project. Ensure the project structure is clean and ready for further development. Initialize a Git repository and create an initial commit.",
+            "status": "pending",
+            "testStrategy": "Run the development server to ensure the React.js project initializes and loads correctly in the browser."
+          },
+          {
+            "id": 2,
+            "title": "Install and Configure Tailwind CSS",
+            "description": "Install Tailwind CSS and configure it for the React.js project.",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Follow the official Tailwind CSS documentation to install Tailwind via npm. Configure the `tailwind.config.js` file and include the necessary directives in the CSS file. Verify that Tailwind styles are applied correctly.",
+            "status": "pending",
+            "testStrategy": "Create a sample component and apply Tailwind classes to ensure the styles are working as expected."
+          },
+          {
+            "id": 3,
+            "title": "Install Component Libraries",
+            "description": "Install shadcn/ui, Magic UI, and Framer Motion libraries.",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Use npm or yarn to install the required libraries. Verify that the libraries are added to the `package.json` file. Import and test basic components or animations from each library to ensure they are functional.",
+            "status": "pending",
+            "testStrategy": "Create a simple test component using each library to verify that the installation was successful and the libraries are working correctly."
+          },
+          {
+            "id": 4,
+            "title": "Create Basic Layout with Navigation",
+            "description": "Develop a basic layout for the application, including a navigation bar.",
+            "dependencies": [
+              "5.2",
+              "5.3"
+            ],
+            "details": "Use Tailwind CSS and components from the installed libraries to create a responsive layout. Include a navigation bar with placeholder links for future pages. Ensure the layout is visually appealing and functional.",
+            "status": "pending",
+            "testStrategy": "Verify that the layout is responsive and the navigation bar works correctly across different screen sizes."
+          },
+          {
+            "id": 5,
+            "title": "Add Placeholder Components",
+            "description": "Create placeholder components for key sections of the application.",
+            "dependencies": [
+              "5.4"
+            ],
+            "details": "Develop placeholder components for sections such as the dashboard, footer, and main content area. Use Tailwind CSS and component libraries to style these components. Ensure they are modular and reusable.",
+            "status": "pending",
+            "testStrategy": "Render the placeholder components in the layout and verify that they display correctly without errors."
+          }
+        ]
       },
       {
         "id": 6,
@@ -75,7 +341,61 @@
           5
         ],
         "status": "pending",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up project structure and dependencies",
+            "description": "Initialize the frontend project structure and install necessary dependencies, including Magic UI and Framer Motion.",
+            "dependencies": [],
+            "details": "Create a new folder for the landing page within the frontend project. Install Magic UI and Framer Motion using npm or yarn. Ensure the project is properly set up to use these libraries.",
+            "status": "pending",
+            "testStrategy": "Verify that the project builds successfully and that Magic UI and Framer Motion are correctly installed by importing and using a basic component from each."
+          },
+          {
+            "id": 2,
+            "title": "Design the layout and structure of the landing page",
+            "description": "Create the basic layout of the landing page, including sections for the hero area, features, and calls-to-action.",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "Use Magic UI components to design the layout. Include a hero section with a headline and subheadline, a features section highlighting key benefits, and a clear call-to-action section for student registration.",
+            "status": "pending",
+            "testStrategy": "Check that the layout matches the design requirements and that all sections are properly structured and visible in the browser."
+          },
+          {
+            "id": 3,
+            "title": "Implement animations and transitions",
+            "description": "Add animations and transitions to the landing page using Framer Motion to enhance visual engagement.",
+            "dependencies": [
+              "6.2"
+            ],
+            "details": "Use Framer Motion to add animations such as fade-ins, slide-ins, and hover effects. Ensure animations are smooth and do not negatively impact performance.",
+            "status": "pending",
+            "testStrategy": "Test the animations in the browser to ensure they are smooth and visually appealing. Verify that they work consistently across different sections of the page."
+          },
+          {
+            "id": 4,
+            "title": "Integrate student registration call-to-action",
+            "description": "Add a functional call-to-action for student registration, including a button or form that redirects to the registration page or triggers a modal.",
+            "dependencies": [
+              "6.3"
+            ],
+            "details": "Use Magic UI components to create a visually appealing button or form. Ensure it is prominently placed and styled to attract attention. Link it to the student registration functionality.",
+            "status": "pending",
+            "testStrategy": "Verify that the call-to-action is functional by testing the redirection or modal trigger. Check that it is visually prominent and works across devices."
+          },
+          {
+            "id": 5,
+            "title": "Test responsiveness and cross-browser compatibility",
+            "description": "Ensure the landing page is fully responsive and works seamlessly across different devices and browsers.",
+            "dependencies": [
+              "6.4"
+            ],
+            "details": "Use CSS media queries and Magic UI's responsive design features to ensure the page adapts to various screen sizes. Test the page on major browsers like Chrome, Firefox, Safari, and Edge.",
+            "status": "pending",
+            "testStrategy": "Manually test the landing page on multiple devices and browsers. Use browser developer tools to simulate different screen sizes and resolutions."
+          }
+        ]
       },
       {
         "id": 7,
@@ -89,7 +409,62 @@
           6
         ],
         "status": "pending",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Registration and Login UI Layouts",
+            "description": "Create wireframes or mockups for the student registration and login UI components.",
+            "dependencies": [],
+            "details": "Use design tools like Figma or Adobe XD to create wireframes for the registration and login pages. Ensure the designs are user-friendly and align with the project's branding guidelines.",
+            "status": "pending",
+            "testStrategy": "Review the wireframes with stakeholders to ensure they meet requirements and gather feedback for improvements."
+          },
+          {
+            "id": 2,
+            "title": "Develop Registration and Login UI Components",
+            "description": "Implement the registration and login UI components using shadcn/ui library.",
+            "dependencies": [
+              "7.1"
+            ],
+            "details": "Use the shadcn/ui library to create reusable components for the registration and login forms. Include fields for email, password, and any other required inputs. Style the components to match the project's design system.",
+            "status": "pending",
+            "testStrategy": "Test the components in isolation to ensure they render correctly and are responsive across different screen sizes."
+          },
+          {
+            "id": 3,
+            "title": "Integrate UI Components with Backend Authentication API",
+            "description": "Connect the registration and login UI components to the backend authentication API endpoints.",
+            "dependencies": [
+              "7.2"
+            ],
+            "details": "Use Axios or Fetch API to send requests to the backend endpoints (e.g., POST /api/auth/register and POST /api/auth/login). Handle success and error responses appropriately, such as displaying error messages for invalid inputs.",
+            "status": "pending",
+            "testStrategy": "Test the integration by performing registration and login actions and verifying the responses from the backend."
+          },
+          {
+            "id": 4,
+            "title": "Implement Form Validation for Registration and Login",
+            "description": "Add client-side validation to the registration and login forms to ensure data integrity.",
+            "dependencies": [
+              "7.2"
+            ],
+            "details": "Use a validation library like Yup or custom validation logic to enforce rules such as required fields, valid email format, and password strength. Display user-friendly error messages for invalid inputs.",
+            "status": "pending",
+            "testStrategy": "Test the validation rules by entering various valid and invalid inputs and ensuring the correct error messages are displayed."
+          },
+          {
+            "id": 5,
+            "title": "Test and Refine the Registration and Login UI",
+            "description": "Perform end-to-end testing of the registration and login UI components and refine them based on feedback.",
+            "dependencies": [
+              "7.3",
+              "7.4"
+            ],
+            "details": "Conduct usability testing with sample users to identify any issues with the UI flow. Refine the components based on feedback and ensure they meet accessibility standards.",
+            "status": "pending",
+            "testStrategy": "Perform end-to-end tests by simulating user interactions, such as filling out forms and submitting them. Verify that the UI behaves as expected and integrates seamlessly with the backend."
+          }
+        ]
       },
       {
         "id": 8,
@@ -102,7 +477,62 @@
           5
         ],
         "status": "pending",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Quiz Component UI",
+            "description": "Create the user interface for the aptitude quiz, including question display, answer options, and navigation controls.",
+            "dependencies": [],
+            "details": "Use a modern UI library like React with Material-UI or Tailwind CSS to design the quiz component. Include a progress indicator to show the user's progress through the quiz. Ensure the design is responsive and accessible.",
+            "status": "pending",
+            "testStrategy": "Verify that the UI renders correctly on different screen sizes and that all interactive elements are functional."
+          },
+          {
+            "id": 2,
+            "title": "Implement Quiz Question Logic",
+            "description": "Develop the logic to display quiz questions dynamically and handle user input.",
+            "dependencies": [
+              "8.1"
+            ],
+            "details": "Create a state management system (e.g., using React's useState or Redux) to manage the current question, user responses, and navigation between questions. Load questions from a static JSON file or API endpoint.",
+            "status": "pending",
+            "testStrategy": "Test with different sets of questions to ensure the logic handles navigation and input correctly."
+          },
+          {
+            "id": 3,
+            "title": "Develop Result Calculation Algorithm",
+            "description": "Implement the algorithm to calculate quiz results and suggest streams based on user responses.",
+            "dependencies": [
+              "8.2"
+            ],
+            "details": "Define a mapping between quiz answers and suggested streams. Write a function that processes user responses and determines the most suitable stream. Ensure the algorithm is modular and easy to update.",
+            "status": "pending",
+            "testStrategy": "Test the algorithm with various input scenarios to ensure accurate and consistent results."
+          },
+          {
+            "id": 4,
+            "title": "Integrate Result Display",
+            "description": "Create a component to display the quiz results and suggested streams to the user.",
+            "dependencies": [
+              "8.3"
+            ],
+            "details": "Design a results page or modal that shows the user's suggested stream(s) in a visually appealing way. Include an option to retake the quiz or explore more information about the suggested streams.",
+            "status": "pending",
+            "testStrategy": "Verify that the results are displayed correctly and match the calculated output for different inputs."
+          },
+          {
+            "id": 5,
+            "title": "Add Client-Side Validation and Error Handling",
+            "description": "Implement validation to ensure all questions are answered and handle any potential errors during the quiz.",
+            "dependencies": [
+              "8.2",
+              "8.4"
+            ],
+            "details": "Add checks to ensure users cannot proceed without answering mandatory questions. Display user-friendly error messages for any issues encountered during the quiz.",
+            "status": "pending",
+            "testStrategy": "Test the validation and error handling by attempting to submit incomplete quizzes and simulating potential errors."
+          }
+        ]
       },
       {
         "id": 9,
@@ -116,7 +546,58 @@
           5
         ],
         "status": "pending",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design and implement the frontend component for displaying college data",
+            "description": "Create a user-friendly frontend component to display a list of government colleges with basic details such as name, location, and available streams.",
+            "dependencies": [],
+            "details": "Use a modern frontend framework like React or Vue.js to create a component that fetches and displays college data. Ensure the layout is responsive and visually appealing. Use placeholder data initially for development.",
+            "status": "pending",
+            "testStrategy": "Test the component on different screen sizes to ensure responsiveness and verify that the placeholder data is displayed correctly."
+          },
+          {
+            "id": 2,
+            "title": "Develop backend API endpoints to fetch college data",
+            "description": "Create API endpoints to retrieve college data from the database, including support for filtering by location and stream.",
+            "dependencies": [],
+            "details": "Implement RESTful API endpoints using Node.js and Express. Use Mongoose to query the MongoDB database for college data. Ensure the API supports query parameters for filtering by location and stream.",
+            "status": "pending",
+            "testStrategy": "Test the API endpoints using tools like Postman to ensure data is fetched correctly and filters work as expected."
+          },
+          {
+            "id": 3,
+            "title": "Integrate the frontend with the backend API",
+            "description": "Connect the frontend component to the backend API to fetch real college data and display it dynamically.",
+            "dependencies": [
+              "9.1",
+              "9.2"
+            ],
+            "details": "Use Axios or Fetch API to make calls to the backend endpoints from the frontend. Replace placeholder data with real data fetched from the API. Handle loading states and errors gracefully.",
+            "status": "pending",
+            "testStrategy": "Verify that the frontend displays real data fetched from the backend and that the loading and error states are handled correctly."
+          },
+          {
+            "id": 4,
+            "title": "Implement filtering functionality on the frontend",
+            "description": "Add UI components for filtering colleges by location and stream, and ensure the filters interact with the backend API.",
+            "dependencies": [
+              "9.3"
+            ],
+            "details": "Create dropdowns or input fields for location and stream filters. Update the API calls to include the selected filter values as query parameters. Update the displayed data dynamically based on the filter results.",
+            "status": "pending",
+            "testStrategy": "Test the filtering functionality by selecting different combinations of filters and verifying that the displayed data matches the expected results."
+          },
+          {
+            "id": 5,
+            "title": "Populate the database with mock college data",
+            "description": "Insert mock data for government colleges into the database to support development and testing.",
+            "dependencies": [],
+            "details": "Create a script to populate the MongoDB database with mock data for government colleges. Include fields such as name, location, and available streams. Run the script to ensure the database is populated correctly.",
+            "status": "pending",
+            "testStrategy": "Verify that the mock data is correctly inserted into the database by querying it directly or using the API endpoints."
+          }
+        ]
       },
       {
         "id": 10,
@@ -129,7 +610,61 @@
           9
         ],
         "status": "pending",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Course Information Component",
+            "description": "Create a frontend component to display detailed course information, including course name, description, duration, and prerequisites.",
+            "dependencies": [],
+            "details": "Use React to design a reusable component for displaying course details. Include placeholders for dynamic data and ensure the layout is responsive. Use CSS or a UI library like TailwindCSS for styling.",
+            "status": "pending",
+            "testStrategy": "Verify the component renders correctly with sample static data and adjusts layout on different screen sizes."
+          },
+          {
+            "id": 2,
+            "title": "Develop Backend API for Course Data",
+            "description": "Create an API endpoint to fetch detailed course information from the database.",
+            "dependencies": [],
+            "details": "Implement a GET /api/courses/:id endpoint in the backend. Use Mongoose to query the Course model and return the course details in JSON format. Handle errors like invalid course IDs gracefully.",
+            "status": "pending",
+            "testStrategy": "Test the endpoint with valid and invalid course IDs to ensure correct data retrieval and error handling."
+          },
+          {
+            "id": 3,
+            "title": "Integrate Frontend with Backend API",
+            "description": "Connect the frontend course information component to the backend API to fetch and display dynamic data.",
+            "dependencies": [
+              "10.1",
+              "10.2"
+            ],
+            "details": "Use Axios or Fetch API to call the backend endpoint from the frontend. Pass the course ID dynamically and update the component state with the fetched data. Handle loading states and errors appropriately.",
+            "status": "pending",
+            "testStrategy": "Test the integration by navigating to a course page and verifying that the correct data is displayed dynamically."
+          },
+          {
+            "id": 4,
+            "title": "Add Navigation to Course Details",
+            "description": "Enable users to navigate to the course information page from the college directory.",
+            "dependencies": [
+              "10.3"
+            ],
+            "details": "Update the college directory component to include links to individual course pages. Use React Router to define routes for course details and pass the course ID as a parameter.",
+            "status": "pending",
+            "testStrategy": "Test navigation by clicking on course links in the college directory and verifying that the correct course details page is displayed."
+          },
+          {
+            "id": 5,
+            "title": "Implement Error Handling and Fallbacks",
+            "description": "Ensure the course information display handles errors and provides fallback UI for missing or invalid data.",
+            "dependencies": [
+              "10.3",
+              "10.4"
+            ],
+            "details": "Add error boundaries in React to catch rendering errors. Display a user-friendly message if the course data cannot be fetched or is missing. Provide a fallback UI for cases where no data is available.",
+            "status": "pending",
+            "testStrategy": "Test error handling by simulating API failures and invalid course IDs. Verify that the fallback UI is displayed correctly."
+          }
+        ]
       },
       {
         "id": 11,
@@ -142,7 +677,61 @@
           5
         ],
         "status": "pending",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Timeline Tracker Component",
+            "description": "Create a wireframe or design for the timeline tracker component, ensuring it visually represents academic deadlines in a clear and user-friendly manner.",
+            "dependencies": [],
+            "details": "Use design tools like Figma or Adobe XD to create a mockup of the timeline tracker. Include placeholders for event titles, dates, and descriptions. Ensure the design aligns with the overall frontend theme established in Task 5.",
+            "status": "pending",
+            "testStrategy": "Review the design with the team to ensure it meets user requirements and is visually consistent with the project."
+          },
+          {
+            "id": 2,
+            "title": "Implement Timeline Tracker Component",
+            "description": "Develop the timeline tracker component in React.js based on the approved design.",
+            "dependencies": [
+              "11.1"
+            ],
+            "details": "Use React.js to create a functional component for the timeline tracker. Style the component using Tailwind CSS to ensure responsiveness. Include placeholders for event data.",
+            "status": "pending",
+            "testStrategy": "Verify that the component renders correctly and matches the approved design."
+          },
+          {
+            "id": 3,
+            "title": "Create Mock Data for Academic Deadlines",
+            "description": "Generate mock data for academic deadlines, such as exams and admissions, to populate the timeline tracker.",
+            "dependencies": [
+              "11.2"
+            ],
+            "details": "Create a JSON file or JavaScript object containing mock data for events. Each event should include fields like title, date, and description. Ensure the data is realistic and varied.",
+            "status": "pending",
+            "testStrategy": "Validate the mock data structure and ensure it can be easily integrated into the timeline tracker component."
+          },
+          {
+            "id": 4,
+            "title": "Integrate Mock Data with Timeline Tracker",
+            "description": "Connect the mock data to the timeline tracker component to display events dynamically.",
+            "dependencies": [
+              "11.3"
+            ],
+            "details": "Use React state or props to pass the mock data into the timeline tracker component. Map over the data to render each event in the timeline.",
+            "status": "pending",
+            "testStrategy": "Verify that all mock events are displayed correctly in the timeline tracker and that the layout adjusts for different numbers of events."
+          },
+          {
+            "id": 5,
+            "title": "Test and Finalize Timeline Tracker",
+            "description": "Perform thorough testing of the timeline tracker component to ensure it is responsive, functional, and visually appealing.",
+            "dependencies": [
+              "11.4"
+            ],
+            "details": "Test the timeline tracker on various devices and screen sizes to ensure responsiveness. Check for any visual or functional issues and fix them. Finalize the component for deployment.",
+            "status": "pending",
+            "testStrategy": "Conduct manual testing on multiple browsers and devices. Use tools like Chrome DevTools to simulate different screen sizes and ensure the component behaves as expected."
+          }
+        ]
       },
       {
         "id": 12,
@@ -160,7 +749,62 @@
           11
         ],
         "status": "pending",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Audit Existing UI Components for shadcn/ui Compliance",
+            "description": "Review all existing UI components to ensure they are built using shadcn/ui and identify any components that need to be refactored.",
+            "dependencies": [],
+            "details": "Go through the codebase and list all UI components. Verify if each component adheres to shadcn/ui standards. Document any components that need updates or replacements.",
+            "status": "pending",
+            "testStrategy": "Ensure all components render correctly and match the shadcn/ui design system."
+          },
+          {
+            "id": 2,
+            "title": "Refactor Non-Compliant Components to Use shadcn/ui",
+            "description": "Refactor or rebuild components identified in the audit to ensure they use shadcn/ui for consistency.",
+            "dependencies": [
+              "12.1"
+            ],
+            "details": "For each non-compliant component, replace existing styles and structures with shadcn/ui components. Test each component individually after refactoring.",
+            "status": "pending",
+            "testStrategy": "Verify that the refactored components visually match the shadcn/ui design system and function as expected."
+          },
+          {
+            "id": 3,
+            "title": "Implement Framer Motion Animations for Page Transitions",
+            "description": "Add smooth animations and transitions between pages using Framer Motion.",
+            "dependencies": [
+              "12.2"
+            ],
+            "details": "Identify key page transitions in the application. Use Framer Motion to define animations for entering and exiting pages. Ensure animations are fluid and visually appealing.",
+            "status": "pending",
+            "testStrategy": "Test transitions between pages to ensure animations are smooth and do not introduce performance issues."
+          },
+          {
+            "id": 4,
+            "title": "Enhance Component Interactions with Framer Motion",
+            "description": "Add micro-interactions to UI components using Framer Motion to improve user experience.",
+            "dependencies": [
+              "12.2"
+            ],
+            "details": "Identify interactive components (e.g., buttons, modals, dropdowns). Use Framer Motion to add animations such as hover effects, click feedback, and modal transitions.",
+            "status": "pending",
+            "testStrategy": "Test each interactive component to ensure animations are responsive and enhance the user experience."
+          },
+          {
+            "id": 5,
+            "title": "Conduct Final Visual and Interaction Testing",
+            "description": "Perform a comprehensive review of the UI to ensure modern aesthetics, fluid interactions, and consistency.",
+            "dependencies": [
+              "12.3",
+              "12.4"
+            ],
+            "details": "Test the entire application UI on multiple devices and browsers. Check for visual consistency, smooth animations, and adherence to the design system. Gather feedback from stakeholders and make final adjustments.",
+            "status": "pending",
+            "testStrategy": "Use a checklist to verify all components and interactions. Conduct user testing sessions to gather feedback on the enhancements."
+          }
+        ]
       }
     ],
     "metadata": {
