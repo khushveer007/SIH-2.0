@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import { TestAlias } from '@/components/TestAlias'
+import { Button } from '@/components/ui/button'
+import { FadeIn } from '@/components/motion/FadeIn'
+import { Search } from 'lucide-react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -30,9 +33,23 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <TestAlias />
-      <div className="mt-6 p-4 rounded-lg bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-lg">
-        <h2 className="text-xl font-semibold tracking-tight">Tailwind Active</h2>
-        <p className="text-sm opacity-90">This block confirms Tailwind utility classes are being processed.</p>
+      <div className="mt-6 grid gap-6">
+        <div className="p-4 rounded-lg bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-lg">
+          <h2 className="text-xl font-semibold tracking-tight">Tailwind Active</h2>
+          <p className="text-sm opacity-90">Utility classes confirmed (v4 plugin build path).</p>
+        </div>
+        <FadeIn>
+          <div className="p-4 rounded-lg border border-indigo-500/40 bg-neutral-900/40 backdrop-blur">
+            <h3 className="font-semibold mb-2 flex items-center gap-2">
+              <Search className="w-4 h-4" /> Demo UI Primitives
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              <Button>Primary</Button>
+              <Button variant="outline">Outline</Button>
+              <Button variant="ghost" size="sm">Ghost Small</Button>
+            </div>
+          </div>
+        </FadeIn>
       </div>
     </>
   )
