@@ -2,7 +2,6 @@
 import { Hero } from './Hero';
 import { HowItWorks } from './HowItWorks';
 import { Features } from './Features';
-import { Testimonials } from './Testimonials';
 import { FinalCta } from './FinalCta';
 
 export const LandingPage: React.FC = () => {
@@ -11,7 +10,6 @@ export const LandingPage: React.FC = () => {
       <Hero />
       <HowItWorks />
       <Features />
-      <Testimonials />
       <FinalCta />
     </div>
   );

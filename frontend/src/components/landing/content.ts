@@ -14,13 +14,6 @@ export interface FeatureItem {
   emphasis?: boolean;
 }
 
-export interface TestimonialItem {
-  id: number;
-  quote: string;
-  author: string;
-  role?: string;
-}
-
 export const HOW_IT_WORKS_STEPS: HowItWorksStep[] = [
   { id: 1, title: 'Create Profile', description: 'Sign up and complete a skill-focused student profile.' },
   { id: 2, title: 'Explore Pathways', description: 'Browse curated academic & vocational career trajectories.' },
@@ -40,11 +33,4 @@ export const CAREER_PATH_ROTATION: string[] = [
   'Senior Analyst',
   'Data Scientist',
   'Analytics Manager'
-];
-
-export const TESTIMONIALS: TestimonialItem[] = [
-  { id: 1, quote: 'This platform clarified my direction in just a week.', author: 'Aarav', role: 'Grade 11 Student' },
-  { id: 2, quote: 'A focused way to align curriculum with future-ready skills.', author: 'Ms. Sharma', role: 'Educator' },
-  { id: 3, quote: 'Reduced anxiety for our child by showing tangible progress.', author: 'Parent', role: 'Guardian' },
-  { id: 4, quote: 'Exactly the structure we needed for outcome-based guidance.', author: 'Counselor', role: 'Academic Advisor' }
 ];
