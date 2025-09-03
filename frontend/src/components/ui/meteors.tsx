@@ -21,24 +21,16 @@ export function Meteors({
   angle = 215,
   className,
 }: MeteorsProps) {
-  const meteors = Array.from({ length: number }, (_, i) => {
-    const duration = Math.random() * (maxDuration - minDuration) + minDuration;
-    const delay = Math.random() * (maxDelay - minDelay) + minDelay;
-    
-    return {
-      id: i,
-      style: {
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        animationDelay: `${delay}s`,
-        '--duration': `${duration}s`,
-        transform: `rotate(${angle}deg)`,
-      } as React.CSSProperties & { '--duration': string },
-    };
-  });
-
-  // Debug log
-  console.log('Meteors rendered:', meteors.length);
+  const meteors = Array.from({ length: number }, (_, i) => ({
+    id: i,
+    style: {
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${Math.random() * (maxDelay - minDelay) + minDelay}s`,
+      animationDuration: `${Math.random() * (maxDuration - minDuration) + minDuration}s`,
+      transform: `rotate(${angle}deg)`,
+    },
+  }));
 
   return (
     <div className={cn("absolute inset-0 overflow-hidden", className)}>
@@ -46,8 +38,8 @@ export function Meteors({
         <span
           key={meteor.id}
           className={cn(
-            "absolute h-2 w-2 rounded-full bg-white shadow-[0_0_8px_4px_rgba(255,255,255,0.3)] animate-meteor",
-            "before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-1/2 before:w-20 before:h-0.5 before:bg-gradient-to-r before:from-transparent before:via-white before:to-transparent"
+            "absolute h-0.5 w-0.5 rounded-full bg-blue-500 shadow-[0_0_0_1px_#ffffff10] animate-meteor",
+            "before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-1/2 before:w-12 before:h-px before:bg-gradient-to-r before:from-transparent before:via-blue-500 before:to-transparent"
           )}
           style={meteor.style}
         />

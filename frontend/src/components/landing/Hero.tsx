@@ -23,13 +23,13 @@ export const Hero: React.FC = () => {
       {/* Magic UI Meteors Background - Outermost layer */}
       {!reduceMotion && (
         <Meteors 
-          number={6} 
-          minDelay={0} 
-          maxDelay={2} 
-          minDuration={2} 
-          maxDuration={4} 
+          number={8} 
+          minDelay={0.2} 
+          maxDelay={1.2} 
+          minDuration={1.5} 
+          maxDuration={3} 
           angle={215}
-          className="absolute inset-0 -z-20"
+          className="-z-20"
         />
       )}
       
