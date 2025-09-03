@@ -334,7 +334,7 @@
         "id": 6,
         "title": "Landing Page Development",
         "description": "Develop an attractive landing page with modern design elements.",
-        "details": "Use Magic UI and Framer Motion to create a visually engaging landing page. Include clear calls-to-action for student registration.",
+        "details": "Use Magic UI and Framer Motion to create a visually engaging landing page. Include clear calls-to-action for student registration.\n<info added on 2025-09-03T00:40:45.694Z>\nObjective & Scope updated per PRD specification:\n\nThe landing page will include the following sections:\n- Hero: Gradient background with animated meteors, retro grid design, shiny text, and a clear call-to-action (CTA).\n- How It Works: Three cards with staggered animations.\n- Core Features: Bento grid with four items, including an animated list within the career path item.\n- Testimonials: Marquee with pause-on-hover functionality.\n- Final CTA: Ripple effect, blur/text reveal, and pulsing CTA.\n- Footer: Minimal multi-column layout.\n\nCross-cutting requirements:\n- Responsive design: Mobile-first approach with no horizontal scroll at 375px width.\n- Theming: Support for dark and light modes.\n- Performance: Largest Contentful Paint (LCP) under 2.5 seconds, Cumulative Layout Shift (CLS) below 0.05, Lighthouse performance score of 85 or higher, and accessibility score of 90 or higher.\n- Accessibility: Semantic HTML, focus-visible support, and reduced motion options.\n- Code organization: Use section components, constants, and shared motion variants for maintainability.\n- Testing: Verify component presence, roles, snapshots, and Lighthouse documentation.\n- Cleanup: Remove unused experimental assets, including the globe.\n\nAcceptance criteria:\n- All sections implemented as specified.\n- Animations gracefully degrade for reduced motion settings.\n- CTA functionality verified.\n- Performance and accessibility thresholds documented.\n- Dark mode contrast meets accessibility standards.\n- No unused experimental assets remain.\n\nOut-of-scope items:\n- Real backend registration functionality.\n- Internationalization (i18n).\n- Dynamic fetching of testimonials.\n- Analytics integration.\n</info added on 2025-09-03T00:40:45.694Z>",
         "testStrategy": "Test the landing page on multiple devices and browsers to ensure responsiveness and visual appeal.",
         "priority": "high",
         "dependencies": [
@@ -344,56 +344,78 @@
         "subtasks": [
           {
             "id": 1,
-            "title": "Set up project structure and dependencies",
-            "description": "Initialize the frontend project structure and install necessary dependencies, including Magic UI and Framer Motion.",
+            "title": "Architecture & Constants Setup",
+            "description": "Set up the foundational architecture and constants for the landing page development.",
             "dependencies": [],
-            "details": "Create a new folder for the landing page within the frontend project. Install Magic UI and Framer Motion using npm or yarn. Ensure the project is properly set up to use these libraries.",
+            "details": "1. Create a folder structure for components and sections.\n2. Define shared motion variants for animations.\n3. Set up constants for theming and responsiveness.\n4. Ensure semantic HTML structure is planned.\n<info added on 2025-09-03T00:51:05.614Z>\nAcceptance Criteria:\n- Directory structure created: src/components/landing/{hero,how-it-works,features,tests,testimonials,final-cta,footer}/ plus index barrel.\n- Shared file: src/components/landing/motionVariants.ts exporting fadeInUp, scaleIn, staggerParent, listReveal variants.\n- Constants: src/components/landing/constants/{copy.ts,features.ts,testimonials.ts,cta.ts} with typed exports.\n- Removal or archival of any unused experimental Globe component (moved to src/experiments if retained).\n- ESLint/TypeScript pass with no new warnings related to the new structure.\n- Dark/light mode styles verified for base section wrappers (no contrast failures with default Tailwind colors + existing theme toggle).\n- No horizontal scroll at 375px viewport with skeleton section placeholders mounted.\n\nTest Strategy:\n1. Run tsc --noEmit to confirm no type errors.\n2. Run ESLint (if configured) to verify style conformance.\n3. Add temporary placeholder components in each section folder; mount sequentially and check layout integrity at widths: 375, 768, 1024, 1440 using responsive dev tools.\n4. Simulate prefers-color-scheme: dark to confirm base wrapper background/foreground pairing meets WCAG AA (use browser accessibility panel or axe).\n</info added on 2025-09-03T00:51:05.614Z>",
             "status": "pending",
-            "testStrategy": "Verify that the project builds successfully and that Magic UI and Framer Motion are correctly installed by importing and using a basic component from each."
+            "testStrategy": ""
           },
           {
             "id": 2,
-            "title": "Design the layout and structure of the landing page",
-            "description": "Create the basic layout of the landing page, including sections for the hero area, features, and calls-to-action.",
+            "title": "Hero Section Implementation",
+            "description": "Develop the Hero section with gradient background, animated meteors, retro grid design, shiny text, and a clear call-to-action.",
             "dependencies": [
               "6.1"
             ],
-            "details": "Use Magic UI components to design the layout. Include a hero section with a headline and subheadline, a features section highlighting key benefits, and a clear call-to-action section for student registration.",
+            "details": "1. Implement gradient background and retro grid design.\n2. Add meteors animation using Framer Motion.\n3. Create shiny text effect.\n4. Integrate the call-to-action button with ripple effect.\n<info added on 2025-09-03T00:51:23.851Z>\nAcceptance Criteria:\n- Hero renders with gradient background and Retro Grid visual positioned right (hidden below md breakpoint) without layout shift (CLS contribution <0.01).\n- Animated Meteors: ≤8 meteors, low velocity; automatically disabled (static fallback) when prefers-reduced-motion matches.\n- Headline includes shiny text effect ONLY on key phrase (configurable constant), sub-headline ≤160 chars.\n- Primary CTA large variant; label configurable via constants; optional secondary link smooth-scrolls to How It Works.\n- Entry animations: headline/sub-headline fade+lift (y:20->0, duration <=0.6s, ease out), CTA scaleIn, visual fades over ~1.2s.\n- All text passes contrast in light & dark mode (WCAG AA).\n- Tab order: Headline -> Sub-headline -> Primary CTA -> Secondary link.\n- No console warnings in render.\n\nTest Strategy:\n1. Snapshot Hero at light & dark mode; verify shiny text applied only to phrase constant.\n2. Measure CLS via Performance panel (ensure Retro Grid reserves space or absolutely positioned overlay without reflow).\n3. Simulate reduced motion (OS setting + devtools) to confirm meteors removed or frozen.\n4. Run axe or Lighthouse to confirm no accessibility violations related to heading structure (h1 present once) & contrast.\n5. Adjust viewport widths 375, 768, 1024 to verify layout stacking order and that visual element hides gracefully on small screens.\n6. Verify smooth scroll triggers correct anchor offset (allows for fixed navbar if present).\n</info added on 2025-09-03T00:51:23.851Z>",
             "status": "pending",
-            "testStrategy": "Check that the layout matches the design requirements and that all sections are properly structured and visible in the browser."
+            "testStrategy": ""
           },
           {
             "id": 3,
-            "title": "Implement animations and transitions",
-            "description": "Add animations and transitions to the landing page using Framer Motion to enhance visual engagement.",
+            "title": "How It Works Section",
+            "description": "Create the How It Works section with three cards and staggered animations.",
             "dependencies": [
               "6.2"
             ],
-            "details": "Use Framer Motion to add animations such as fade-ins, slide-ins, and hover effects. Ensure animations are smooth and do not negatively impact performance.",
+            "details": "1. Design three cards with relevant content.\n2. Implement staggered animations for card appearance.\n3. Ensure responsiveness and accessibility for the section.\n<info added on 2025-09-03T00:51:40.093Z>\nAcceptance Criteria:\n- Render three Magic UI Card components within a semantic container (e.g., <section aria-labelledby=\"how-it-works-heading\">) with a heading ID.\n- Each card must include an icon (compass, university, rocket), step number, title, and a description of ≤110 characters.\n- Ensure responsive layout: stacked vertically on mobile, and a 3-column grid with equal-height cards on medium and larger screens.\n- Implement staggered animations using parent variants with staggerChildren=0.3; each card should fade and lift (opacity 0->1, y 20->0) within ≤0.5 seconds.\n- Add hover/focus effects: translateY(-4px) and a glow ring (outline-offset) without causing layout shifts.\n- Ensure focus-visible styling meets contrast requirements and is not overridden by hover state.\n- For reduced motion settings, cards should appear without vertical transform animations (fade or immediate display is acceptable).\n- Avoid duplicate step numbering; ensure numbering is accessible via visible text or aria-label.\n\nTest Strategy:\n1. Inspect the DOM to verify ARIA section labeling and heading linkage.\n2. Test keyboard navigation to confirm focus order is left-to-right on desktop and top-to-bottom on mobile.\n3. Record animation performance in the Performance panel to ensure no dropped frames with all three cards.\n4. Simulate prefers-reduced-motion settings to confirm vertical transform animations are removed.\n5. Run axe accessibility tests to check for contrast and landmark issues.\n6. Validate description length by asserting string length constraints in unit tests or snapshots.\n</info added on 2025-09-03T00:51:40.093Z>",
             "status": "pending",
-            "testStrategy": "Test the animations in the browser to ensure they are smooth and visually appealing. Verify that they work consistently across different sections of the page."
+            "testStrategy": ""
           },
           {
             "id": 4,
-            "title": "Integrate student registration call-to-action",
-            "description": "Add a functional call-to-action for student registration, including a button or form that redirects to the registration page or triggers a modal.",
+            "title": "Core Features Bento Grid",
+            "description": "Develop the Core Features section with a Bento grid layout and animated list within the career path item.",
             "dependencies": [
               "6.3"
             ],
-            "details": "Use Magic UI components to create a visually appealing button or form. Ensure it is prominently placed and styled to attract attention. Link it to the student registration functionality.",
+            "details": "1. Create a Bento grid layout with four items.\n2. Add animations for the career path list.\n3. Ensure dark and light mode compatibility.\n4. Verify responsiveness and accessibility.\n<info added on 2025-09-03T00:51:57.541Z>\nAcceptance Criteria:\n- Bento Grid renders 4 items with layout: Large (Aptitude Suggestion), Small (Nearby Colleges), Small (Timeline Tracker), Large (Course-to-Career Mapping) using appropriate grid-area or row/col spans.\n- Animated List present ONLY in Career Path large tile cycling through at least 3 steps (e.g., B.Sc. -> Data Analyst -> Senior Analyst) with accessible live update disabled (aria-live='off').\n- Hover/focus on any tile: scale 1.03, gradient overlay (semi-transparent) and text overlay reveals short description; identical effect triggered via keyboard focus.\n- Each tile has aria-label summarizing feature (e.g., \"Feature: Aptitude Based Suggestions\").\n- Reduced motion: Animated List switches to static list (no motion) or single snapshot.\n- Dark & light mode visually distinct but readable (contrast AA for text and overlay transparency not exceeding readability threshold). \n- Tiles reflow single column at <640px, two columns at ≥640px if desired, final desktop layout stable ≥1024px.\n- No layout shift when hover overlay appears (overlay absolutely positioned without affecting flow).\n\nTest Strategy:\n1. Inspect DOM to confirm aria-label presence on interactive tiles.\n2. Use keyboard navigation to ensure overlay appears on focus (not just hover).\n3. Simulate reduced motion and verify Animated List stops cycling.\n4. Run Lighthouse or axe to verify no contrast issues for overlay text.\n5. Manually resize dev tools to confirm column breakpoints and absence of horizontal scroll.\n6. Capture performance timeline to ensure hover scale animation does not cause layout reflow (transform-only).\n</info added on 2025-09-03T00:51:57.541Z>",
             "status": "pending",
-            "testStrategy": "Verify that the call-to-action is functional by testing the redirection or modal trigger. Check that it is visually prominent and works across devices."
+            "testStrategy": ""
           },
           {
             "id": 5,
-            "title": "Test responsiveness and cross-browser compatibility",
-            "description": "Ensure the landing page is fully responsive and works seamlessly across different devices and browsers.",
+            "title": "Testimonials Marquee",
+            "description": "Implement the Testimonials section with a marquee and pause-on-hover functionality.",
             "dependencies": [
               "6.4"
             ],
-            "details": "Use CSS media queries and Magic UI's responsive design features to ensure the page adapts to various screen sizes. Test the page on major browsers like Chrome, Firefox, Safari, and Edge.",
+            "details": "1. Design the marquee layout for testimonials.\n2. Add pause-on-hover functionality.\n3. Ensure reduced motion settings degrade gracefully.\n4. Test responsiveness and accessibility.\n<info added on 2025-09-03T00:52:08.027Z>\nAcceptance Criteria:\n- Marquee renders continuous horizontal scroll of testimonial cards (quote, name, class) with loop seamless (no visible jump/cut) using duplicated content track technique if needed.\n- Pause on hover AND keyboard focus (any testimonial) halts motion within ≤150ms.\n- Data sourced from constants/testimonials.ts array (min 3 entries) typed (interface: { id: string; quote: string; name: string; classLabel: string }).\n- Accessible: region labeled via aria-labelledby referencing section heading; aria-live='off'.\n- Reduced motion: marquee becomes horizontal scroll container (overflow-x auto) with no automatic animation.\n- Cards have max width ensuring at least 2 visible on 375px viewport.\n- No console errors; FPS stable (no long tasks >50ms from marquee logic).\n\nTest Strategy:\n1. Inspect DOM duplication strategy (if used) ensuring seamless loop (record for 10 seconds, verify no flash).\n2. Hover & focus test: ensure animation frame loop cancels and resumes when blurred/mouseleave.\n3. Simulate reduced motion; confirm automatic movement removed and horizontal scrollbar appears with keyboard arrow scroll working.\n4. Validate structure with axe (no landmark or aria issues; heading present once).\n5. Throttle CPU 4x in dev tools to verify marquee remains smooth or gracefully degraded.\n6. Confirm testimonial array typing via TypeScript (no implicit any).\n</info added on 2025-09-03T00:52:08.027Z>",
             "status": "pending",
-            "testStrategy": "Manually test the landing page on multiple devices and browsers. Use browser developer tools to simulate different screen sizes and resolutions."
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Final CTA & Footer",
+            "description": "Develop the Final CTA section with ripple effect and blur/text reveal, and implement a minimal multi-column footer layout.",
+            "dependencies": [
+              "6.5"
+            ],
+            "details": "1. Create the Final CTA with ripple effect and blur/text reveal.\n2. Implement pulsing animation for the CTA button.\n3. Design a minimal multi-column footer layout.\n4. Ensure responsiveness and accessibility.\n<info added on 2025-09-03T00:52:18.448Z>\nAcceptance Criteria:\n- Final CTA section centers headline + primary CTA + optional supporting text; max-width ≤ 56rem.\n- Ripple background effect renders behind content with opacity tuned for both themes (no contrast loss under dark mode); removed or static fallback under reduced motion.\n- Blur/Text Reveal animation duration ≤0.8s ease-out; reduced motion: immediate display.\n- CTA button reuses same variant as Hero; pulse animation (scale 1 -> 1.05 -> 1) every 2s; disabled under prefers-reduced-motion.\n- Footer has 3 columns (About, Contact, Social) stacking vertically <640px; uses semantic <footer> tag with nav/ul groupings.\n- Social links have discernible text (no icon-only without aria-label).\n- Focus-visible rings visible for all links/buttons; contrast AA maintained.\n- No layout shift when ripple starts (positioned absolutely with fixed dimensions or canvas reserve area).\n\nTest Strategy:\n1. Toggle dark/light mode to confirm ripple translucency works in both.\n2. Simulate reduced motion: verify pulse & ripple animations disabled, content still centered.\n3. Keyboard tab through footer links ensuring logical order left-to-right (desktop) and top-down (mobile breakpoint).\n4. Use Lighthouse accessibility to confirm no issues with footer semantic regions.\n5. Capture performance timeline to ensure ripple does not trigger layout thrashing (transform/opacity only).\n6. Validate responsive stacking at 375px and column layout at ≥1024px.\n</info added on 2025-09-03T00:52:18.448Z>",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Performance & Accessibility Validation",
+            "description": "Validate the landing page for performance and accessibility requirements.",
+            "dependencies": [
+              "6.6"
+            ],
+            "details": "1. Test Largest Contentful Paint (LCP) and Cumulative Layout Shift (CLS).\n2. Verify Lighthouse performance and accessibility scores.\n3. Ensure semantic HTML and focus-visible support.\n4. Remove unused experimental assets, including the globe.\n<info added on 2025-09-03T00:52:31.830Z>\nAcceptance Criteria:\n- Lighthouse Performance ≥85, Accessibility ≥90, Best Practices ≥90, SEO ≥80 (document scores in task notes with timestamp and commit hash).\n- LCP element identified (expected: hero headline or hero section container) loads <2.5s on simulated Moto G4 throttling.\n- CLS total <0.05; no unexpected layout shifts logged (Performance > Experience panel).\n- All interactive elements keyboard accessible; tab order matches visual reading order per section.\n- prefers-reduced-motion: no continuous motion (meteors frozen/removed, marquee stops, list animation static, CTA pulse disabled, ripple static/removed).\n- No images (if added) without alt text; decorative visuals marked aria-hidden.\n- Color contrast report: zero WCAG AA failures for text at 14px+ normal weight.\n- Bundle does not include removed experimental Globe (verify via source map inspection or build artifact grep).\n- Largest JS chunk size for landing route below defined threshold (e.g., <250KB gzip) or note mitigation (code splitting) if exceeded.\n\nTest Strategy:\n1. Run Lighthouse (desktop & mobile) in incognito; record JSON export and paste summary into task details.\n2. Use Performance panel to capture page load; extract LCP candidate and timing; verify CLS in Experience panel.\n3. Simulate reduced motion and visually confirm absence of continuous animations (manual checklist referencing each section).\n4. Run axe and manual keyboard traversal; confirm no focus traps and logical order.\n5. Use grep or bundle analyzer to confirm Globe component absence: e.g., search for \"Globe\" in dist assets.\n6. (Optional) Use source-map-explorer or rollup-plugin-visualizer to confirm chunk sizing and identify any unexpectedly large dependencies for follow-up optimization.\n7. Document findings appended back to this subtask via additional update-subtask entries.\n</info added on 2025-09-03T00:52:31.830Z>",
+            "status": "pending",
+            "testStrategy": ""
           }
         ]
       },
