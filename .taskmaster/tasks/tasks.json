@@ -832,7 +832,7 @@
         "id": 13,
         "title": "Developer Dashboard Demo",
         "description": "Create a developer-only dashboard demo using shadcn/ui components to preview placeholder panels for upcoming features.",
-        "details": "Develop a Developer Dashboard Demo gated behind authentication, accessible only to logged-in users. Use shadcn/ui primitives to create a responsive 2-column layout with a sidebar navigation and main content area. Implement placeholder panels for future features (Aptitude Quiz, Course Information Display, Student Personal Academic Profile, Government College Directory snippet, Timeline Tracker snippet) with mock data and skeleton loaders. Include a global status/announcement area and ensure dark mode compatibility. Each feature panel should have a title, short description, and mock preview. Create a centralized mockData.ts file to export typed placeholder data for all features. Add TODO comments in each feature panel pointing to the real future task IDs (8, 9, 10, 11). Ensure basic accessibility with landmarks and aria-labels for navigation. Deliverables include DashboardLayout and SidebarNav components, individual feature placeholder components, route wiring in App.tsx, and a README snippet documenting the dev-only nature of the dashboard.",
+        "details": "Develop a Developer Dashboard Demo gated behind authentication, accessible only to logged-in users. Use shadcn/ui primitives to create a responsive 2-column layout with a sidebar navigation and main content area. Implement placeholder panels for future features (Aptitude Quiz, Course Information Display, Student Personal Academic Profile, Government College Directory snippet, Timeline Tracker snippet) with mock data and skeleton loaders. Include a global status/announcement area and ensure dark mode compatibility. Each feature panel should have a title, short description, and mock preview. Create a centralized mockData.ts file to export typed placeholder data for all features. Add TODO comments in each feature panel pointing to the real future task IDs (8, 9, 10, 11). Ensure basic accessibility with landmarks and aria-labels for navigation. Deliverables include DashboardLayout and SidebarNav components, individual feature placeholder components, route wiring in App.tsx, and a README snippet documenting the dev-only nature of the dashboard.\n<info added on 2025-09-03T05:56:51.205Z>\nDuring the initial development phase, allow a temporary DEV_BYPASS mode to enable developers to view the dashboard without logging in. Implementation guidelines:\n- Introduce a boolean flag (e.g., DEV_DASHBOARD_BYPASS=true) via environment or a local constant guarded by NODE_ENV==='development'.\n- If the bypass is active and no authenticated user exists, treat the user as a mock dev user with the following properties: id: 'dev', email: 'dev@example.com', username: 'dev'.\n- Clearly mark the UI with a non-production badge (e.g., a small ribbon or text: 'DEV PREVIEW – Not Authenticated').\n- Ensure the bypass is easy to remove before production by implementing it through a single code path or feature flag.\n- Do not persist tokens or create side effects when in bypass mode.\n\nUpdate subtask 13.1 to include that the gating logic must respect the bypass mode for local iterative UI work.\n</info added on 2025-09-03T05:56:51.205Z>",
         "testStrategy": "Verify the dashboard builds cleanly without unused exports. Test the layout for responsiveness and dark mode compatibility. Ensure placeholder panels display mock data correctly and include skeleton loaders. Check that navigation icons are functional and accessible. Confirm the dashboard is gated behind authentication and only visible to logged-in users. Validate the centralized mockData.ts file for accurate data typing and usage. Review the README snippet for clarity and completeness.",
         "status": "pending",
         "dependencies": [
@@ -840,7 +840,124 @@
           7
         ],
         "priority": "medium",
-        "subtasks": []
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Authentication Setup",
+            "description": "Implement authentication to gate access to the developer dashboard.",
+            "dependencies": [],
+            "details": "Use an authentication context to ensure only logged-in users can access the dashboard. Include login/logout functionality and session management.\n<info added on 2025-09-03T05:56:55.731Z>\nSupport a DEV_BYPASS mode for development environments. When the `DEV_DASHBOARD_BYPASS` constant is set to `true` and the environment is development, allow the dashboard to render using a mock developer user with the following details: ID 'dev', email 'dev@example.com', and username 'dev'. Display a visible badge labeled 'DEV PREVIEW' on the dashboard. Ensure no authentication tokens are persisted and no API calls are executed in this mode. Provide a single toggle constant to disable this feature before production deployment.\n</info added on 2025-09-03T05:56:55.731Z>",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Layout Creation",
+            "description": "Design a responsive 2-column layout for the dashboard.",
+            "dependencies": [
+              "13.1"
+            ],
+            "details": "Use shadcn/ui primitives to create a layout with a sidebar navigation and main content area. Ensure responsiveness for mobile and desktop views.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Sidebar Navigation Component",
+            "description": "Develop a sidebar navigation component for the dashboard.",
+            "dependencies": [
+              "13.2"
+            ],
+            "details": "Create a collapsible sidebar navigation with links to feature panels. Include aria-labels for accessibility.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Feature Panel Placeholders",
+            "description": "Implement placeholder panels for upcoming features.",
+            "dependencies": [
+              "13.2",
+              "13.3"
+            ],
+            "details": "Create modular components for each feature panel (Welcome/User Summary, Recent Timeline Events, Government College Directory, Aptitude Quiz Teaser, Settings Stub) with mock data and skeleton loaders.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Mock Data Creation",
+            "description": "Create a centralized mockData.ts file for placeholder data.",
+            "dependencies": [
+              "13.4"
+            ],
+            "details": "Export typed mock data for all feature panels. Include TODO comments pointing to future task IDs (8, 9, 10, 11).",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Dark Mode Compatibility",
+            "description": "Ensure the dashboard supports dark mode.",
+            "dependencies": [
+              "13.2",
+              "13.3",
+              "13.4"
+            ],
+            "details": "Implement styling for dark mode using shadcn/ui primitives and test across all components.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Accessibility Checks",
+            "description": "Verify accessibility compliance for the dashboard.",
+            "dependencies": [
+              "13.3",
+              "13.4"
+            ],
+            "details": "Add landmarks, aria-labels, and keyboard navigation support. Test accessibility using tools like Lighthouse.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "Skeleton Loader Implementation",
+            "description": "Add skeleton loaders to feature panels.",
+            "dependencies": [
+              "13.4"
+            ],
+            "details": "Implement skeleton loaders for each feature panel to improve user experience during data loading.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 9,
+            "title": "Route Wiring in App.tsx",
+            "description": "Set up routing for the dashboard and feature panels.",
+            "dependencies": [
+              "13.3",
+              "13.4"
+            ],
+            "details": "Wire routes in App.tsx to navigate between the dashboard and individual feature panels.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 10,
+            "title": "README Documentation",
+            "description": "Update the README file to document the developer-only nature of the dashboard.",
+            "dependencies": [
+              "13.1",
+              "13.2",
+              "13.3",
+              "13.4"
+            ],
+            "details": "Include instructions for accessing the dashboard, its purpose, and authentication requirements.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
       }
     ],
     "metadata": {
