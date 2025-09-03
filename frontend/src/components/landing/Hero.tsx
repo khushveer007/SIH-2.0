@@ -59,7 +59,7 @@ export const Hero: React.FC = () => {
         </motion.div>
         
         <motion.p variants={fadeInUp} className="mt-4 sm:mt-6 text-base sm:text-lg text-neutral-200 leading-relaxed max-w-2xl mx-auto px-2">
-          A structured pathway platform helping students discover, plan & track career-aligned learning journeys.
+          Pathfinder helps students discover, plan & track career-aligned learning journeys with structured pathway guidance.
         </motion.p>
         
         <motion.div variants={scaleIn} className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center relative px-4 sm:px-0">
@@ -73,7 +73,7 @@ export const Hero: React.FC = () => {
           <a
             href="#get-started"
             className="relative z-10 inline-flex items-center justify-center rounded-md bg-indigo-600 px-6 sm:px-8 py-3 text-sm font-medium text-white shadow hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 transition-colors"
-            aria-label="Get started with Future-Ready Guidance platform"
+            aria-label="Get started with Pathfinder platform"
           >
             Get Started
           </a>

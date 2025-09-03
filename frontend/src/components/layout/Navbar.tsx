@@ -22,7 +22,7 @@ export const Navbar: React.FC = () => {
     <header className="sticky top-0 z-40 border-b border-neutral-800/80 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/70">
       <div className="container flex h-14 items-center justify-between">
         <div className="flex items-center gap-4">
-          <a href="#" className="font-semibold tracking-tight text-indigo-400 hover:text-indigo-300 transition-colors">SIH 2.0</a>
+          <a href="#" className="font-semibold tracking-tight text-indigo-400 hover:text-indigo-300 transition-colors">Pathfinder</a>
           <nav className="hidden md:flex items-center gap-6 text-sm" aria-label="Main">
             {navItems.map((item) => (
               <a
