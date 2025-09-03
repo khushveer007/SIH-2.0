@@ -28,18 +28,18 @@ export const HOW_IT_WORKS_STEPS: HowItWorksStep[] = [
 ];
 
 export const FEATURE_ITEMS: FeatureItem[] = [
-  { id: 1, title: 'Personalized Guidance', description: 'Adaptive recommendations based on profile signals.', emphasis: true },
-  { id: 2, title: 'Skill Path Visualizer', description: 'Clear, contextual visualization of academic + career steps.' },
-  { id: 3, title: 'Collaborative Mentoring', description: 'Enable structured input from educators & guardians.' },
-  { id: 4, title: 'Progress Insights', description: 'Milestone tracking with actionable improvement suggestions.' }
+  { id: 1, title: 'Aptitude Suggestion', description: 'AI-powered recommendations based on your skills, interests, and academic performance to guide your career choices.', emphasis: true },
+  { id: 2, title: 'Nearby Colleges', description: 'Discover and compare educational institutions in your area with detailed information and admission requirements.' },
+  { id: 3, title: 'Timeline Tracker', description: 'Visual progress tracking with milestones, deadlines, and personalized study plans to keep you on track.' },
+  { id: 4, title: 'Course-to-Career Mapping', description: 'Explore how different courses and subjects align with various career paths and future opportunities.', emphasis: true }
 ];
 
 export const CAREER_PATH_ROTATION: string[] = [
+  'B.Sc. Computer Science',
   'Data Analyst',
-  'Civil Engineer',
-  'Sustainability Lead',
-  'AI Researcher',
-  'Healthcare Technologist'
+  'Senior Analyst',
+  'Data Scientist',
+  'Analytics Manager'
 ];
 
 export const TESTIMONIALS: TestimonialItem[] = [
