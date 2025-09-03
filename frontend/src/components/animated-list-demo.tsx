@@ -1,7 +1,7 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { AnimatedList } from "@/components/animated-list";
+import { cn } from "../lib/utils"; // adjusted from alias
+import { AnimatedList } from "./magicui/animated-list";
 
 interface Item {
   name: string;

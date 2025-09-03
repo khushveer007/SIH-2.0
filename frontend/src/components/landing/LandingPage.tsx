@@ -3,6 +3,7 @@ import { Hero } from './Hero';
 import { HowItWorks } from './HowItWorks';
 import { Features } from './Features';
 import { FinalCta } from './FinalCta';
+import { Footer } from './Footer';
 
 export const LandingPage: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ export const LandingPage: React.FC = () => {
       <HowItWorks />
       <Features />
       <FinalCta />
+      <Footer />
     </div>
   );
 };

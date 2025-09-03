@@ -31,3 +31,14 @@ export const marqueeContainer: Variants = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { duration: 0.6 } }
 };
+
+// New blur + reveal effect (brief blur that resolves quickly)
+export const blurReveal: Variants = {
+  hidden: { opacity: 0, filter: 'blur(8px)' },
+  show: { opacity: 1, filter: 'blur(0px)', transition: { duration: 0.6, ease: 'easeOut' } }
+};
+
+/*
+Pulse animation is implemented via Tailwind arbitrary keyframes in component:
+@keyframes cta-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+*/
