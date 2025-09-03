@@ -8,8 +8,8 @@ export const loginSchema = z.object({
 export type LoginSchema = z.infer<typeof loginSchema>;
 
 export const registerSchema = loginSchema.extend({
+  username: z.string().trim().min(3, 'Username too short').max(32, 'Username too long').regex(/^[a-zA-Z0-9._-]+$/, 'Only letters, numbers, . _ -'),
   confirmPassword: z.string().min(8, 'Confirm your password'),
-  // Optional full name (deferred usage)
   name: z.string().trim().min(2, 'Name too short').max(80, 'Name too long').optional()
 }).superRefine((data, ctx) => {
   if (data.password !== data.confirmPassword) {

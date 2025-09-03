@@ -1,7 +1,11 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { scaleIn, fadeInUp, blurReveal } from './variants';
 
-export const FinalCta: React.FC = () => {
+interface FinalCtaProps {
+  onShowRegister?: () => void;
+  onShowLogin?: () => void;
+}
+export const FinalCta: React.FC<FinalCtaProps> = ({ onShowRegister, onShowLogin }) => {
   const reduce = useReducedMotion();
   return (
     <section id="get-started" className="py-24 md:py-32 relative">
@@ -41,12 +45,20 @@ export const FinalCta: React.FC = () => {
             clarity begins with a single step.
           </motion.p>
           <motion.div variants={fadeInUp} className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#register"
+            <button
+              type="button"
+              onClick={() => onShowRegister?.()}
               className={`inline-flex items-center justify-center rounded-md bg-indigo-600 px-7 py-3 text-sm font-medium text-white shadow hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 transition-colors ${reduce ? '' : 'animate-[cta-pulse_2s_ease-in-out_infinite]'}`}
             >
               Create Profile
-            </a>
+            </button>
+            <button
+              type="button"
+              onClick={() => onShowLogin?.()}
+              className="inline-flex items-center justify-center rounded-md border border-neutral-700 px-7 py-3 text-sm font-medium text-neutral-200 hover:bg-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 transition-colors"
+            >
+              Sign In
+            </button>
             <a
               href="#hero"
               className="inline-flex items-center justify-center rounded-md border border-neutral-700 px-7 py-3 text-sm font-medium text-neutral-200 hover:bg-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 transition-colors"

@@ -430,7 +430,7 @@
           4,
           6
         ],
-        "status": "pending",
+        "status": "done",
         "subtasks": [
           {
             "id": 1,
@@ -449,7 +449,7 @@
               "7.1"
             ],
             "details": "Use the shadcn/ui library to create reusable components for the registration and login forms. Include fields for email, password, and any other required inputs. Style the components to match the project's design system.\n<info added on 2025-09-03T04:59:54.824Z>\nWork Completed:\n1. Added zod schemas (`schemas.ts`) for login & register including password confirmation logic and trimming.\n2. Implemented shared `FormField` component handling label, input, error message, and accessibility attributes.\n3. Refactored `LoginForm` & `RegisterForm` to use react-hook-form + zodResolver with onBlur validation mode.\n4. Added simulated async submit flows (650–750ms) with demo rejection paths to exercise error UI; real API integration deferred to 7.3.\n5. Added server error alert region with role=alert and consistent styling.\n6. Added loading states (button label swap + disabled states) and prevented duplicate submissions.\n7. Removed unused imports/consts; build now passes with zero type errors after clean-up.\n\nTechnical Notes:\n- Confirm password mismatch handled via superRefine custom issue.\n- Name field kept commented until product requires; schema supports optional `name`.\n- Normalization: email trimmed automatically by zod `.trim()`.\n- Potential future enhancement: password strength meter & visibility toggle (deferred to UX backlog).\n\nAccessibility:\n- Each field includes aria-invalid + aria-describedby when error present.\n- Server error region uses role=alert ensuring announcement by screen readers.\n- Required fields surfaced visually with asterisk and programmatically by `required` attribute.\n\nFiles Added:\n- src/components/auth/schemas.ts\n- src/components/auth/FormField.tsx\n\nFiles Modified:\n- src/components/auth/LoginForm.tsx\n- src/components/auth/RegisterForm.tsx\n- src/lib/auth.ts (commented BASE placeholder)\n\nBuild Validation:\n- After refactor, initial build failed due to unused imports; patched and `get_errors` returned no issues.\n\nNext Steps:\n- Replace simulated submit with real fetch calls (loginUser/registerUser) + token storage + success callback in 7.3.\n- Enhance validation UX (aggregate error summary, potential focus management on first error, trimming before submit though zod already handles email trim) in 7.4.\n</info added on 2025-09-03T04:59:54.824Z>",
-            "status": "in-progress",
+            "status": "done",
             "testStrategy": "Test the components in isolation to ensure they render correctly and are responsive across different screen sizes."
           },
           {
@@ -459,8 +459,8 @@
             "dependencies": [
               "7.2"
             ],
-            "details": "Use Axios or Fetch API to send requests to the backend endpoints (e.g., POST /api/auth/register and POST /api/auth/login). Handle success and error responses appropriately, such as displaying error messages for invalid inputs.",
-            "status": "pending",
+            "details": "Use Axios or Fetch API to send requests to the backend endpoints (e.g., POST /api/auth/register and POST /api/auth/login). Handle success and error responses appropriately, such as displaying error messages for invalid inputs.\n<info added on 2025-09-03T05:03:38.090Z>\nImplemented real API layer in frontend/src/lib/auth.ts with functions loginUser, registerUser, and fetchMe using fetch wrappers for backend communication. Added JSON safe parsing, error normalization, and token persistence in localStorage. Defined types including LoginPayload, RegisterPayload (now includes username), UserInfo, and result union types. Next steps include introducing AuthContext/useAuth for global authentication state management, modifying forms to call these functions, adding username handling in the registration form, integrating success flows, and implementing protected UI components. Token is currently stored in plaintext in localStorage as a short-term solution, with plans to migrate to httpOnly cookies once backend support is available.\n</info added on 2025-09-03T05:03:38.090Z>\n<info added on 2025-09-03T05:14:30.571Z>\nIntegrated AuthContext in context/AuthContext.tsx to manage global authentication state, including hydration (fetchMe), login, register (auto-login), logout, and token management. Updated schemas.ts to include username validation (3-32 characters, allowed set) in the registration schema. Modified RegisterForm to include a username field, call registerAuth, and auto-clear sensitive fields after submission. Updated LoginForm to use context login and disable submit when already authenticated. Wrapped the App component in AuthProvider and added conditional rendering: authenticated users see DashboardPlaceholder and a logout link, while unauthenticated users see auth toggles or the landing page. Introduced loading and initializing states for better user experience. Completed core integration steps, with optional polish tasks remaining, such as improved error mapping, success notifications, and password manager hints.\n</info added on 2025-09-03T05:14:30.571Z>",
+            "status": "done",
             "testStrategy": "Test the integration by performing registration and login actions and verifying the responses from the backend."
           },
           {
@@ -470,8 +470,8 @@
             "dependencies": [
               "7.2"
             ],
-            "details": "Use a validation library like Yup or custom validation logic to enforce rules such as required fields, valid email format, and password strength. Display user-friendly error messages for invalid inputs.",
-            "status": "pending",
+            "details": "Use a validation library like Yup or custom validation logic to enforce rules such as required fields, valid email format, and password strength. Display user-friendly error messages for invalid inputs.\n<info added on 2025-09-03T05:17:04.712Z>\nValidation UX enhancements implemented: 1) First-error focus logic prioritizing username/email/password/confirm on registration and email/password on login. 2) Submit buttons disabled until form isDirty && isValid to prevent premature submission. 3) Password strength tip added in an aria-live polite region when password is less than 12 characters and no existing password error is present. 4) Enabled reValidateMode='onChange' for faster iterative correction. 5) Accessible error messaging maintained via role=alert and field-level aria-describedby ties. 6) Integrated focus management with setTimeout to avoid race conditions with repaint after React Hook Form sets errors. Remaining optional improvements deferred: a) consolidated error summary list with anchor links for screen reader navigation; b) real entropy-based strength meter (e.g., zxcvbn) with colored indicator; c) async username availability check placeholder; d) trimming and case normalization for username pre-submit (currently only zod sanitize).\n</info added on 2025-09-03T05:17:04.712Z>",
+            "status": "done",
             "testStrategy": "Test the validation rules by entering various valid and invalid inputs and ensuring the correct error messages are displayed."
           },
           {
@@ -483,7 +483,7 @@
               "7.4"
             ],
             "details": "Conduct usability testing with sample users to identify any issues with the UI flow. Refine the components based on feedback and ensure they meet accessibility standards.",
-            "status": "pending",
+            "status": "done",
             "testStrategy": "Perform end-to-end tests by simulating user interactions, such as filling out forms and submitting them. Verify that the UI behaves as expected and integrates seamlessly with the backend."
           }
         ]
@@ -827,11 +827,25 @@
             "testStrategy": "Use a checklist to verify all components and interactions. Conduct user testing sessions to gather feedback on the enhancements."
           }
         ]
+      },
+      {
+        "id": 13,
+        "title": "Developer Dashboard Demo",
+        "description": "Create a developer-only dashboard demo using shadcn/ui components to preview placeholder panels for upcoming features.",
+        "details": "Develop a Developer Dashboard Demo gated behind authentication, accessible only to logged-in users. Use shadcn/ui primitives to create a responsive 2-column layout with a sidebar navigation and main content area. Implement placeholder panels for future features (Aptitude Quiz, Course Information Display, Student Personal Academic Profile, Government College Directory snippet, Timeline Tracker snippet) with mock data and skeleton loaders. Include a global status/announcement area and ensure dark mode compatibility. Each feature panel should have a title, short description, and mock preview. Create a centralized mockData.ts file to export typed placeholder data for all features. Add TODO comments in each feature panel pointing to the real future task IDs (8, 9, 10, 11). Ensure basic accessibility with landmarks and aria-labels for navigation. Deliverables include DashboardLayout and SidebarNav components, individual feature placeholder components, route wiring in App.tsx, and a README snippet documenting the dev-only nature of the dashboard.",
+        "testStrategy": "Verify the dashboard builds cleanly without unused exports. Test the layout for responsiveness and dark mode compatibility. Ensure placeholder panels display mock data correctly and include skeleton loaders. Check that navigation icons are functional and accessible. Confirm the dashboard is gated behind authentication and only visible to logged-in users. Validate the centralized mockData.ts file for accurate data typing and usage. Review the README snippet for clarity and completeness.",
+        "status": "pending",
+        "dependencies": [
+          5,
+          7
+        ],
+        "priority": "medium",
+        "subtasks": []
       }
     ],
     "metadata": {
       "created": "2025-09-02T19:46:39.653Z",
-      "updated": "2025-09-03T04:58:23.922Z",
+      "updated": "2025-09-03T05:28:33.232Z",
       "description": "Tasks for master context"
     }
   }

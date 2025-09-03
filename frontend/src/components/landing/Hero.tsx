@@ -5,7 +5,10 @@ import { Ripple } from '../ui/ripple';
 import { Meteors } from '../ui/meteors';
 import { AnimatedShinyText } from '../ui/animated-shiny-text';
 
-export const Hero: React.FC = () => {
+interface HeroProps {
+  onShowRegister?: () => void;
+}
+export const Hero: React.FC<HeroProps> = ({ onShowRegister }) => {
   const reduceMotion = useReducedMotion();
 
   const scrollToHowItWorks = () => {
@@ -70,13 +73,15 @@ export const Hero: React.FC = () => {
             </div>
           )}
           
-          <a
-            href="#get-started"
+          <button
+            type="button"
+            onClick={() => onShowRegister?.()}
             className="relative z-10 inline-flex items-center justify-center rounded-md bg-indigo-600 px-6 sm:px-8 py-3 text-sm font-medium text-white shadow hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 transition-colors"
-            aria-label="Get started with Pathfinder platform"
+            aria-label="Create your Pathfinder account"
           >
             Get Started
-          </a>
+          </button>
+
           
           <button
             onClick={scrollToHowItWorks}

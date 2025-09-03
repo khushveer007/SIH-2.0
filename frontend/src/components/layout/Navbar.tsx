@@ -37,7 +37,17 @@ export const Navbar: React.FC = () => {
         </div>
         <div className="flex items-center gap-2">
           <DarkModeToggle />
-          <Button size="sm" className="hidden md:inline-flex">Sign In</Button>
+          <Button
+            size="sm"
+            className="hidden md:inline-flex"
+            onClick={() => {
+              if (typeof window !== 'undefined') {
+                window.dispatchEvent(new CustomEvent('auth-open', { detail: { mode: 'login' } }));
+              }
+            }}
+          >
+            Sign In
+          </Button>
           <button
             className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-neutral-300 hover:text-white hover:bg-neutral-800/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
             aria-label="Toggle navigation menu"
@@ -61,7 +71,19 @@ export const Navbar: React.FC = () => {
                 {item.label}
               </a>
             ))}
-            <Button variant="outline" className="w-full" size="sm">Sign In</Button>
+            <Button
+              variant="outline"
+              className="w-full"
+              size="sm"
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.dispatchEvent(new CustomEvent('auth-open', { detail: { mode: 'login' } }));
+                }
+                setOpen(false);
+              }}
+            >
+              Sign In
+            </Button>
           </div>
         </FadeIn>
       )}

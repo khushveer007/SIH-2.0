@@ -5,13 +5,18 @@ import { Features } from './Features';
 import { FinalCta } from './FinalCta';
 import { Footer } from './Footer';
 
-export const LandingPage: React.FC = () => {
+export interface LandingPageProps {
+  onShowLogin?: () => void;
+  onShowRegister?: () => void;
+}
+
+export const LandingPage: React.FC<LandingPageProps> = ({ onShowLogin, onShowRegister }) => {
   return (
     <div className="space-y-10 md:space-y-24">
-      <Hero />
+  <Hero onShowRegister={onShowRegister} />
       <HowItWorks />
       <Features />
-      <FinalCta />
+      <FinalCta onShowRegister={onShowRegister} onShowLogin={onShowLogin} />
       <Footer />
     </div>
   );
