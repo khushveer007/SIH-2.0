@@ -3,8 +3,8 @@
 import type { Variants } from 'framer-motion';
 
 export const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.25, 0.1, 0.25, 1] } }
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
 export const fadeIn: Variants = {
@@ -23,8 +23,8 @@ export const staggerContainer = (stagger = 0.15, delayChildren = 0): Variants =>
 });
 
 export const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.95 },
-  show: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: 'easeOut' } }
+  hidden: { opacity: 0, scale: 0.92 },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: 'easeOut' } }
 };
 
 export const marqueeContainer: Variants = {
