@@ -2,7 +2,8 @@
 // Adapted from Magic UI TextAnimate component
 import { cn } from "../utils/cn";
 import { AnimatePresence, motion, type MotionProps, type Variants } from "framer-motion";
-import { ElementType, memo } from "react";
+import { memo } from "react";
+import type { ElementType } from "react";
 
 type AnimationType = "text" | "word" | "character" | "line";
 type AnimationVariant =
