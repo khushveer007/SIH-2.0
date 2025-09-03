@@ -16,7 +16,7 @@ export const Features: React.FC = () => {
   return (
     <section id="features" className="py-20 md:py-28">
       <div className="container">
-        <header className="mb-12 max-w-2xl">
+        <header className="mb-12 max-w-2xl mx-auto text-center">
           <h2 className="text-2xl md:text-4xl font-bold tracking-tight">Core Features</h2>
           <p className="mt-3 text-neutral-300">Built for clarity, momentum & informed decision-making.</p>
         </header>

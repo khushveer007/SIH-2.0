@@ -370,7 +370,7 @@
               "6.2"
             ],
             "details": "1. Design three cards with relevant content.\n2. Implement staggered animations for card appearance.\n3. Ensure responsiveness and accessibility for the section.\n<info added on 2025-09-03T00:51:40.093Z>\nAcceptance Criteria:\n- Render three Magic UI Card components within a semantic container (e.g., <section aria-labelledby=\"how-it-works-heading\">) with a heading ID.\n- Each card must include an icon (compass, university, rocket), step number, title, and a description of ≤110 characters.\n- Ensure responsive layout: stacked vertically on mobile, and a 3-column grid with equal-height cards on medium and larger screens.\n- Implement staggered animations using parent variants with staggerChildren=0.3; each card should fade and lift (opacity 0->1, y 20->0) within ≤0.5 seconds.\n- Add hover/focus effects: translateY(-4px) and a glow ring (outline-offset) without causing layout shifts.\n- Ensure focus-visible styling meets contrast requirements and is not overridden by hover state.\n- For reduced motion settings, cards should appear without vertical transform animations (fade or immediate display is acceptable).\n- Avoid duplicate step numbering; ensure numbering is accessible via visible text or aria-label.\n\nTest Strategy:\n1. Inspect the DOM to verify ARIA section labeling and heading linkage.\n2. Test keyboard navigation to confirm focus order is left-to-right on desktop and top-to-bottom on mobile.\n3. Record animation performance in the Performance panel to ensure no dropped frames with all three cards.\n4. Simulate prefers-reduced-motion settings to confirm vertical transform animations are removed.\n5. Run axe accessibility tests to check for contrast and landmark issues.\n6. Validate description length by asserting string length constraints in unit tests or snapshots.\n</info added on 2025-09-03T00:51:40.093Z>",
-            "status": "pending",
+            "status": "done",
             "testStrategy": ""
           },
           {
@@ -831,7 +831,7 @@
     ],
     "metadata": {
       "created": "2025-09-02T19:46:39.653Z",
-      "updated": "2025-09-03T02:57:15.796Z",
+      "updated": "2025-09-03T03:24:54.145Z",
       "description": "Tasks for master context"
     }
   }
